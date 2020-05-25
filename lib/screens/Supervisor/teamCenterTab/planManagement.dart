@@ -78,7 +78,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text(
-                                      documents[index].data["PlanType"],
+                                      documents[index].data["planType"],
                                       style:
                                           Theme.of(context).textTheme.headline5,
                                     ),
@@ -89,7 +89,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                       "Date Starting: " +
                                           DateFormat.yMMMd().format(
                                               documents[index]
-                                                  .data["DateStarting"]
+                                                  .data["dateStarting"]
                                                   .toDate()),
                                       style:
                                           Theme.of(context).textTheme.subtitle1,
@@ -107,9 +107,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                         Theme.of(context).textTheme.headline5,
                                   ),
                                   Text(
-                                    (documents[index].data["from"]) +
-                                        " - " +
-                                        (documents[index].data["to"]),
+                                    (documents[index].data["planText"]),
                                     style:
                                         Theme.of(context).textTheme.headline6,
                                   ),
@@ -147,7 +145,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                                   context: context,
                                                   builder: (context) {
                                                     return EditPlan(
-                                                      student: teamMember,
+                                                      teamMember: teamMember,
                                                       startDate: documents[
                                                               index]
                                                           .data["dateStarting"]
@@ -155,10 +153,8 @@ class _PlanManagementState extends State<PlanManagement> {
                                                       endDate: documents[index]
                                                           .data["dateEnding"]
                                                           .toDate(),
-                                                      fromPlan: documents[index]
-                                                          .data["from"],
-                                                      toPlan: documents[index]
-                                                          .data["to"],
+                                                      planText: documents[index]
+                                                          .data["planText"],
                                                       planType: documents[index]
                                                           .data["planType"],
                                                       edit: false,

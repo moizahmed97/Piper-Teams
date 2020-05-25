@@ -136,7 +136,7 @@ class _IndividualMemberManagementState
                         context: context,
                         builder: (context) {
                           return EditPlan(
-                            student: member,
+                            teamMember: member,
                             edit: true,
                           );
                         },

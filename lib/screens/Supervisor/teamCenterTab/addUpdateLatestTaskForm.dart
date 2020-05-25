@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
-import 'package:piper_team_tasks/widgets/quranInfo.dart';
 
 class AddUpdateTask extends StatefulWidget {
   @override
@@ -26,7 +25,6 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
   final _formKey = GlobalKey<FormState>();
   final List<String> taskTypes = ['Critical', 'Normal', 'Low'];
 
-  List<String> surah = QuranHelper().surah123;
 
   // form values
   String _task;

@@ -99,7 +99,7 @@ class StudentDatabaseService {
   }
 
   // Method that updates the team member's plan
-  Future<void> updatePlan(String teamMemberID, String fromPlan, String toPlan,
+  Future<void> updatePlan(String teamMemberID, String fromPlan, 
       DateTime fromDate, DateTime toDate, String planType) async {
     CollectionReference planCollection =
         Firestore.instance.collection('TeamMember/$teamMemberID/Plan');
@@ -110,7 +110,6 @@ class StudentDatabaseService {
       'dateStarting': fromDate,
       'planType': planType,
       'from': fromPlan,
-      'to': toPlan,
       'plan': "",
       'progress': 0.0,
       'status': true
@@ -119,7 +118,7 @@ class StudentDatabaseService {
 
   // Function to add a new plan for the given teamMember
 
-  Future<void> addPlan(String teamMember, String fromPlan, String toPlan,
+  Future<void> addPlan(String teamMember, String fromPlan,
       DateTime fromDate, DateTime toDate, String planType) async {
     CollectionReference planCollection =
         Firestore.instance.collection('TeamMember/$teamMember/Plan');
@@ -133,7 +132,6 @@ class StudentDatabaseService {
       'plan': "",
       'progress': 0.0,
       'status': true,
-      'to': toPlan,
     });
   }
 
