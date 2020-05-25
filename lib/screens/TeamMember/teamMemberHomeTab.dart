@@ -153,9 +153,9 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
         bool checked = false;
 
       return CheckboxListTile(
-        title: _getAssignmentTypeText(doc.taskType),
+        subtitle: _getAssignmentTypeText(doc.taskType),
         secondary: _getAssignmentTypeIcon(doc.taskType),
-        subtitle: Text(
+        title: Text(
           '${doc.task}',
         ),
         value: checked,
