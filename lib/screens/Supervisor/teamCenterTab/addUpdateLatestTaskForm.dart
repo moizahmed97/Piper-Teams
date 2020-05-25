@@ -96,7 +96,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
                               Task(
                                   task: _task ??
                                       snapshot.data[0].task ??
-                                      "Fatiha",
+                                      " ",
                                   taskType: _getTaskTypeInt(_taskType),
                                   grade: "Incomplete",
                                   feedback: "None",

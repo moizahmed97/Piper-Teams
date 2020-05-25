@@ -219,9 +219,15 @@ class TeamCenterMemberCard extends StatelessWidget {
         'Normal',
         style: Theme.of(context).textTheme.bodyText2,
       );
-    } else {
+    } else  if (taskType == 3) {
       return Text(
         'Low',
+        style: Theme.of(context).textTheme.bodyText2,
+      );
+    }
+    else {
+      return Text(
+        'Unknown',
         style: Theme.of(context).textTheme.bodyText2,
       );
     }

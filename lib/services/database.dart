@@ -83,7 +83,7 @@ class DatabaseService {
       return Task(
         dateCreated: doc.data['dateCreated'].toDate(),
         deadline: doc.data['deadline'].toDate(),
-        taskType: doc.data['assignmentType'],
+        taskType: doc.data['taskType'],
         feedback: doc.data['feedback'],
         status: doc.data['status'],
         grade: doc.data['grade'],
