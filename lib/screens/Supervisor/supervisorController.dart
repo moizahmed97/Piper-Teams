@@ -113,12 +113,8 @@ class _SupervisorControllerState extends State<SupervisorController>
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton.extended(
-            icon: Icon(Icons.add),
-            label: Text(
-              "Add Team Member",
-              style: Theme.of(context).textTheme.button,
-            ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
             backgroundColor: Colors.teal[700],
             onPressed: () {
               showDialog(
