@@ -108,7 +108,9 @@ class _PlanManagementState extends State<PlanManagement> {
                                   ),
                                   Text(
                                     (documents[index].data["plan"]),
+                                    textAlign: TextAlign.center,
                                     style:
+                                  
                                         Theme.of(context).textTheme.headline6,
                                   ),
                                   SizedBox(height: 10),
