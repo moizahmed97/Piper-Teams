@@ -49,7 +49,7 @@ class _SupervisorControllerState extends State<SupervisorController>
       );
     else
       return Text(
-        'Attendance',
+        'Members',
         style: Theme.of(context).textTheme.headline6,
       );
   }
@@ -94,7 +94,7 @@ class _SupervisorControllerState extends State<SupervisorController>
               BottomNavigationBarItem(
                 icon: Icon(Icons.people),
                 title: Text(
-                  'Attendance',
+                  'Members',
                 ),
               ),
             ],
