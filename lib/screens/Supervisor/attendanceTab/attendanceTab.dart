@@ -14,7 +14,7 @@ class _AttendanceTabState extends State<AttendanceTab> {
     // Get the Student Document that has Name and ID in each document
     final students = Provider.of<List<SimpleTeamMemberInfo>>(context);
      students.removeWhere(
-                (element) => element.teamMemberID == "WillBeRemovedlater");
+                (element) => element.teamMemberID == "Placeholder teamMemberID");
     if (students.length !=0) {
       return Container(
       child: ListView.builder(
