@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
-import 'package:piper_team_tasks/screens/Student/assignmentsHistoryTab.dart';
-import 'package:piper_team_tasks/screens/Student/studentHomeTab.dart';
-import 'package:piper_team_tasks/screens/Student/studentProfileTab.dart';
+import 'package:piper_team_tasks/screens/TeamMember/tasksHistoryTab.dart';
+import 'package:piper_team_tasks/screens/TeamMember/teamMemberHomeTab.dart';
+import 'package:piper_team_tasks/screens/TeamMember/teamMemberProfileTab.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
 

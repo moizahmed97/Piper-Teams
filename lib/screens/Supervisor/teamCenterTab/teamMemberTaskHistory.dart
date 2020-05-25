@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
-import 'package:piper_team_tasks/screens/Student/taskCard.dart';
-import 'package:piper_team_tasks/screens/Student/nextPlanAssignmetnCard.dart';
+import 'package:piper_team_tasks/screens/TeamMember/taskCard.dart';
+import 'package:piper_team_tasks/screens/TeamMember/nextPlanTaskCard.dart';
 
 class TeamMemberHistory extends StatefulWidget {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
-import 'package:piper_team_tasks/screens/Student/taskCard.dart';
+import 'package:piper_team_tasks/screens/TeamMember/taskCard.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
-import 'nextPlanAssignmetnCard.dart';
+import 'nextPlanTaskCard.dart';
 
 class TasksHistory extends StatelessWidget {
   @override
