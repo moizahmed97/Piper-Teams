@@ -36,13 +36,13 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Text displayAssignmentType(assignmentType, context) {
-    if (assignmentType == 1) {
+  Text displayAssignmentType(taskType, context) {
+    if (taskType == 1) {
       return Text(
         'Critical',
         style: Theme.of(context).textTheme.bodyText2,
       );
-    } else if (assignmentType == 2) {
+    } else if (taskType == 2) {
       return Text(
         'Normal',
         style: Theme.of(context).textTheme.bodyText2,

@@ -17,8 +17,10 @@ class TeamMemberHomeTab extends StatefulWidget {
 }
 
 class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
+
   @override
   Widget build(BuildContext context) {
+
     final user = Provider.of<SimpleUser>(context);
 
     return StreamBuilder<DocumentSnapshot>(
@@ -69,12 +71,12 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () async {
-                                  TeamMemberDatabaseService().addTeamMemberToTeam(
-                                      user.uid,
-                                      snapshot.data['name'],
-                                      sectionCode);
-                                  TeamMemberDatabaseService().addTeamMembersTeam(
-                                      sectionCode, user.uid);
+                                  TeamMemberDatabaseService()
+                                      .addTeamMemberToTeam(user.uid,
+                                          snapshot.data['name'], sectionCode);
+                                  TeamMemberDatabaseService()
+                                      .addTeamMembersTeam(
+                                          sectionCode, user.uid);
                                   Navigator.of(context).pop();
                                 }),
                           ],
@@ -144,34 +146,42 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
         });
   }
 
+
   List<Widget> _getLatestAssignmentTiles(latestAssignment, context) {
-      return latestAssignment.map<Widget>((doc) {
-      return ListTile(
-        leading: _getAssignmentTypeIcon(doc.taskType),
+
+    return latestAssignment.map<Widget>((doc) {
+        bool checked = false;
+
+      return CheckboxListTile(
         title: _getAssignmentTypeText(doc.taskType),
+        secondary: _getAssignmentTypeIcon(doc.taskType),
         subtitle: Text(
           '${doc.task}',
         ),
+        value: checked,
+        onChanged: (bool value) {
+          setState(() {
+            checked = value;
+          });
+        },
       );
     }).toList();
-    
-     
   }
 
-  Icon _getAssignmentTypeIcon(int assignmentType) {
-    if (assignmentType == 1) {
+  Icon _getAssignmentTypeIcon(int taskType) {
+    if (taskType == 1) {
       return Icon(
-        Icons.assignment,
+        Icons.priority_high,
         color: Colors.black,
       );
-    } else if (assignmentType == 2) {
+    } else if (taskType == 2) {
       return Icon(
-        Icons.skip_previous,
+        Icons.work,
         color: Colors.black,
       );
     } else {
       return Icon(
-        Icons.skip_previous,
+        Icons.calendar_today,
         color: Colors.black,
       );
     }

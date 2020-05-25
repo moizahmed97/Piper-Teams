@@ -91,8 +91,8 @@ class TeamCenterMemberCard extends StatelessWidget {
       return latestTask.map<Widget>((doc) {
         return ListTile(
           leading: _getTaskTypeIcon(doc.taskType),
-          title: _getTaskTypeText(doc.taskType, context),
-          subtitle: Text(
+          subtitle: _getTaskTypeText(doc.taskType, context),
+          title: Text(
             "${doc.task}",
           ),
           trailing: RawMaterialButton(
@@ -124,17 +124,17 @@ class TeamCenterMemberCard extends StatelessWidget {
   Icon _getTaskTypeIcon(int taskType) {
     if (taskType == 1) {
       return Icon(
-        Icons.assignment,
+        Icons.priority_high,
         color: Colors.black,
       );
     } else if (taskType == 2) {
       return Icon(
-        Icons.skip_previous,
+        Icons.work,
         color: Colors.black,
       );
     } else {
       return Icon(
-        Icons.skip_previous,
+        Icons.calendar_today,
         color: Colors.black,
       );
     }
