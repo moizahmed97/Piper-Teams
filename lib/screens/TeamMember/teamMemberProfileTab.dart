@@ -6,7 +6,7 @@ import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:piper_team_tasks/services/auth.dart';
 import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
 
-class ProfileTabS extends StatelessWidget {
+class TeamMemberProfilePage extends StatelessWidget {
   final AuthService _auth = AuthService();
 
   @override

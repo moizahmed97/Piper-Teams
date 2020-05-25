@@ -64,7 +64,7 @@ class _TeamMemberControllerState extends State<TeamMemberController> {
                           StreamProvider<DocumentSnapshot>.value(
                               value: TeamMemberDatabaseService()
                                   .getTeamMemberDoc(user.uid),
-                              child: ProfileTabS())),
+                              child: TeamMemberProfilePage())),
                 );
               },
               icon: Icon(Icons.person, color: Colors.white),

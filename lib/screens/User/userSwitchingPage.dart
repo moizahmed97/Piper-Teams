@@ -50,7 +50,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                 builder: (context) {
                   return AlertDialog(
                     title: Text(
-                      'Enter Student Details',
+                      'Enter Team Member Details',
                       style: TextStyle(fontSize: 18.0, color: Colors.black),
                     ),
                     content: Form(
@@ -86,7 +86,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () async {
-                            TeamMemberDatabaseService().createStudent(
+                            TeamMemberDatabaseService().createMember(
                                 user.uid, memberName, memberAge);
                             TeamMemberDatabaseService()
                                 .addTeamMemberUserToSimpleUser(user.uid, memberName);
@@ -204,7 +204,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             DatabaseService().addSupervisorNameToUser(
                                 user.uid, managerName);
                             Navigator.of(context)
-                                .pushReplacementNamed('/instructorHome');
+                                .pushReplacementNamed('/supervisorHome');
                           }),
                     ],
                   );

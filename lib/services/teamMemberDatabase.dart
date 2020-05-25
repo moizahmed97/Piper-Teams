@@ -16,7 +16,7 @@ class TeamMemberDatabaseService {
   final CollectionReference userCollection =
       Firestore.instance.collection('User');
 
-  Future<void> createStudent(uid, name, age) async {
+  Future<void> createMember(uid, name, age) async {
     await teamMemberCollection
         .document(uid)
         .setData({'name': '$name', 'age': '$age', 'supervisor': ""});

@@ -57,7 +57,7 @@ class _SupervisorControllerState extends State<SupervisorController>
                     onPressed: () async {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ProfileTab()),
+                        MaterialPageRoute(builder: (context) => SupervisorProfilePage()),
                       );
                     },
                     icon: Icon(Icons.person,color: Colors.white,),

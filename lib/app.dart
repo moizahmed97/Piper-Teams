@@ -51,9 +51,9 @@ class _PiperTeamTasksState extends State<PiperTeamTasks> {
           home: UserSwitchingPage(),
           routes: {
             '/supervisorHome': (context) => SupervisorController(),
-            '/instructorProfile': (context) => ProfileTab(),
+            '/supervisorProfile': (context) => SupervisorProfilePage(),
             '/userSwitchPage': (context) => UserSwitchingPage(),
-            '/studentProfile': (context) => ProfileTabS(),
+            '/teamMemberProfile': (context) => TeamMemberProfilePage(),
             '/teamMemberHome': (context) => TeamMemberController(),
           },
         ),
