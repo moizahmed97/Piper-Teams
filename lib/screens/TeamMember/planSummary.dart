@@ -58,11 +58,11 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
           ),
           progressColor: Colors.teal,
         ),
-        title: Text(
+        subtitle: Text(
           '${doc['planType']}',
           style: Theme.of(context).textTheme.bodyText2,
         ),
-        subtitle: Text(
+        title: Text(
           '${doc['plan']}',
         ),
       );
