@@ -28,7 +28,7 @@ class ProfileTab extends StatelessWidget {
                   width: 15,
                 ),
                 Text(
-                  "Sign in as ${user.teamMember}  (Student)",
+                  "Sign in as ${user.teamMember}  (Team Member)",
                   style: Theme.of(context).textTheme.button,
                 ),
               ]),

@@ -29,7 +29,7 @@ class EditPlan extends StatefulWidget {
 }
 
 class _EditPlanState extends State<EditPlan> {
-  final List<String> planTypes = ['Memorization', 'Revision', 'Old Recall'];
+  final List<String> planTypes = ['Critical', 'Normal', 'Low'];
 
   bool picker = true;
 
@@ -48,9 +48,9 @@ class _EditPlanState extends State<EditPlan> {
 //  }
 
   int _getAssignmentTypeInt(String val) {
-    if (val == 'Memorization') {
+    if (val == 'Critical') {
       return 1;
-    } else if (val == 'Revision') {
+    } else if (val == 'Normal') {
       return 2;
     } else {
       return 3;
@@ -214,11 +214,11 @@ class _EditPlanState extends State<EditPlan> {
                 );
               }).toList(),
               value: widget.planType == null
-                  ? 'Memorization'
+                  ? 'Critical'
                   : widget.planType,
               onChanged: (value) {
                 setState(() {
-                  widget.planType = value ?? "Memorization";
+                  widget.planType = value ?? "Critical";
                 });
               },
               isExpanded: true,
@@ -269,7 +269,7 @@ class _EditPlanState extends State<EditPlan> {
                     "Juz " + widget.toPlan,
                     widget.startDate,
                     widget.endDate,
-                    widget.planType ?? "Memorization");
+                    widget.planType ?? "Critical");
                 List<Task> all = generateMultipleAssignments(
                     widget.startDate,
                     widget.endDate,

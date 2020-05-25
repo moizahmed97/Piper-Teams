@@ -143,9 +143,9 @@ class StudentDatabaseService {
         Firestore.instance.collection('TeamMember/$teamMemberID/Plan');
     planCollection.document(planType).delete();
     int pType = 1;
-    if (planType == "Memorization") {
+    if (planType == "Critical") {
       pType = 1;
-    } else if (planType == "Revision") {
+    } else if (planType == "Normal") {
       pType = 2;
     } else {
       pType = 3;

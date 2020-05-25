@@ -24,7 +24,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
   );
 
   final _formKey = GlobalKey<FormState>();
-  final List<String> taskTypes = ['Memorization', 'Revision', 'Old Recall'];
+  final List<String> taskTypes = ['Critical', 'Normal', 'Low'];
 
   List<String> surah = QuranHelper().surah123;
 
@@ -72,7 +72,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
                           child: Text('$taskType'),
                         );
                       }).toList(),
-                      value: _taskType ?? 'Memorization',
+                      value: _taskType ?? 'Normal',
                       onChanged: (value) {
                         setState(() {
                           _taskType = value;
@@ -114,9 +114,9 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
   }
 
   int _getTaskTypeInt(String val) {
-    if (val == 'Memorization') {
+    if (val == 'Critical') {
       return 1;
-    } else if (val == 'Revision') {
+    } else if (val == 'Normal') {
       return 2;
     } else {
       return 3;

@@ -32,7 +32,7 @@ class ProfileTabS extends StatelessWidget {
                     width: 15,
                   ),
                   Text(
-                    "Sign in as ${user.supervisor}  (Teacher)",
+                    "Sign in as ${user.supervisor}  (Supervisor)",
                     style: Theme
                         .of(context)
                         .textTheme

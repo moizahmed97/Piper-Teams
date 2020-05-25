@@ -211,17 +211,17 @@ class TeamCenterMemberCard extends StatelessWidget {
   Text _getTaskTypeText(int taskType, context) {
     if (taskType == 1) {
       return Text(
-        'Memorization',
+        'Critical',
         style: Theme.of(context).textTheme.bodyText2,
       );
     } else if (taskType == 2) {
       return Text(
-        'Revision',
+        'Normal',
         style: Theme.of(context).textTheme.bodyText2,
       );
     } else {
       return Text(
-        'Old Recall',
+        'Low',
         style: Theme.of(context).textTheme.bodyText2,
       );
     }
