@@ -33,8 +33,11 @@ class _EditPlanState extends State<EditPlan> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
+      title: widget.edit ? Text(
         "Create A New Plan",
+        style: TextStyle(color: Colors.black),
+      ) : Text(
+        "Edit Plan",
         style: TextStyle(color: Colors.black),
       ),
       content: Form(
