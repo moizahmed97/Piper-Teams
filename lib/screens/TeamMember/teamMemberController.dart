@@ -16,10 +16,25 @@ class TeamMemberController extends StatefulWidget {
 
 class _TeamMemberControllerState extends State<TeamMemberController> {
   int _selectedIndex = 0;
+    PageController _pageController;
+
+ @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+         _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
     });
   }
 
@@ -71,7 +86,15 @@ class _TeamMemberControllerState extends State<TeamMemberController> {
               label: Text("Profile", style: TextStyle(color: Colors.white),)),
         ],
       ),
-      body: _buildMainDashboard(),
+      body: SizedBox.expand(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() => _selectedIndex = index);
+              },
+              children: <Widget>[TeamMemberHomeTab(), TasksHistory()],
+            ),
+          ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -94,15 +117,5 @@ class _TeamMemberControllerState extends State<TeamMemberController> {
     );
   }
 
-  Container _buildMainDashboard() {
-    if (_selectedIndex == 0)
-      return Container(
-        child: TeamMemberHomeTab(),
-      );
-    else {
-      return Container(
-          margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
-          child: TasksHistory());
-    }
-  }
+
 }

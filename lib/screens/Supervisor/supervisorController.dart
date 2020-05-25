@@ -60,11 +60,10 @@ class _SupervisorControllerState extends State<SupervisorController>
     if (user != null) {
       return StreamProvider<List<SimpleTeamMemberInfo>>.value(
         value: DatabaseService().getTeamMembersInTeam(user.uid, "Team"),
-        // Get all the students (as documents) in the section specified as parameter for this InstructorX
+        // Get all the team members (as documents) in the team specified as parameter for this supervisor
         child: Scaffold(
           appBar: AppBar(
             title: _changeAppBarTitle(_selectedIndex),
-            //centerTitle: true,
             actions: <Widget>[
               FlatButton.icon(
                   onPressed: () async {
@@ -112,7 +111,6 @@ class _SupervisorControllerState extends State<SupervisorController>
               children: <Widget>[TeamCenter(), AttendanceTab()],
             ),
           ),
-          // body: _buildMainDashboard(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton.extended(
