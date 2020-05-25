@@ -102,7 +102,7 @@ class TeamCenterMemberCard extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   completion(doc.grade),
-                  Text("Rating:", style: TextStyle(color: Colors.black)),
+                  Text("Status:", style: TextStyle(color: Colors.black)),
                   ratingsDisplay(doc.grade)
                 ],
               ),
@@ -165,7 +165,7 @@ class TeamCenterMemberCard extends StatelessWidget {
       default:
         return Text(
           "Incomplete",
-          style: TextStyle(color: Colors.red),
+          style: TextStyle(color: Colors.orange),
         );
     }
   }
@@ -174,7 +174,7 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (complete == "Incomplete")
       return CircleAvatar(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.orange,
         maxRadius: 9,
         child: Icon(
           Icons.close,
@@ -212,12 +212,12 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (taskType == 1) {
       return Text(
         'Critical',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.blue),
       );
     } else if (taskType == 2) {
       return Text(
         'Normal',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.indigo),
       );
     } else  if (taskType == 3) {
       return Text(
