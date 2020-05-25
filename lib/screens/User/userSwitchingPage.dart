@@ -86,9 +86,9 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () async {
-                            StudentDatabaseService().createStudent(
+                            TeamMemberDatabaseService().createStudent(
                                 user.uid, memberName, memberAge);
-                            StudentDatabaseService()
+                            TeamMemberDatabaseService()
                                 .addTeamMemberUserToSimpleUser(user.uid, memberName);
                             Navigator.of(context)
                                 .pushReplacementNamed('/teamMemberHome');

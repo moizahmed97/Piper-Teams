@@ -125,7 +125,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       onPressed: () {
-                                        StudentDatabaseService().deletePlan(
+                                        TeamMemberDatabaseService().deletePlan(
                                             teamMember,
                                             documents[index].data["planType"]);
                                       }),

@@ -62,7 +62,7 @@ class _IndividualMemberManagementState
                             child: Text("DELETE",
                                 style: TextStyle(color: Colors.red)),
                             onPressed: () {
-                              StudentDatabaseService()
+                              TeamMemberDatabaseService()
                                   .teamMemberLeavesSection(member, user.uid);
                               Navigator.pop(context);
                               Navigator.pop(context);

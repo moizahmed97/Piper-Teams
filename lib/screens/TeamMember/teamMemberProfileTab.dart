@@ -122,7 +122,7 @@ class ProfileTabS extends StatelessWidget {
             ),
             color: Colors.orange,
             onPressed: () {
-              StudentDatabaseService().teamMemberLeavesSection(
+              TeamMemberDatabaseService().teamMemberLeavesSection(
                   user.uid, studentDoc.data['instructor']);
               Navigator.pop(context);
             },

@@ -62,7 +62,7 @@ class _TeamMemberControllerState extends State<TeamMemberController> {
                   MaterialPageRoute(
                       builder: (context) =>
                           StreamProvider<DocumentSnapshot>.value(
-                              value: StudentDatabaseService()
+                              value: TeamMemberDatabaseService()
                                   .getTeamMemberDoc(user.uid),
                               child: ProfileTabS())),
                 );

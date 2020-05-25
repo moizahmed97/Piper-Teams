@@ -22,7 +22,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
     final user = Provider.of<SimpleUser>(context);
 
     return StreamBuilder<DocumentSnapshot>(
-        stream: StudentDatabaseService().getTeamMemberDoc(user.uid),
+        stream: TeamMemberDatabaseService().getTeamMemberDoc(user.uid),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data['supervisor'] == "")
@@ -69,11 +69,11 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () async {
-                                  StudentDatabaseService().addTeamMemberToTeam(
+                                  TeamMemberDatabaseService().addTeamMemberToTeam(
                                       user.uid,
                                       snapshot.data['name'],
                                       sectionCode);
-                                  StudentDatabaseService().addTeamMembersTeam(
+                                  TeamMemberDatabaseService().addTeamMembersTeam(
                                       sectionCode, user.uid);
                                   Navigator.of(context).pop();
                                 }),

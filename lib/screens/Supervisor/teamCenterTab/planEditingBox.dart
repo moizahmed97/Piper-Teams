@@ -160,14 +160,14 @@ class _EditPlanState extends State<EditPlan> {
             onPressed: () async {
               picker = true;
               if (widget.edit) {
-                StudentDatabaseService().addPlan(
+                TeamMemberDatabaseService().addPlan(
                     widget.teamMember,
                     widget.planText,
                     widget.startDate ?? DateTime.now(),
                     widget.endDate ?? DateTime.now(),
                     widget.planType ?? "Critical");
               } else
-                StudentDatabaseService().updatePlan(
+                TeamMemberDatabaseService().updatePlan(
                     widget.teamMember,
                     widget.planText,
                     widget.startDate ?? DateTime.now(),
