@@ -60,8 +60,8 @@ class _SupervisorControllerState extends State<SupervisorController>
                         MaterialPageRoute(builder: (context) => ProfileTab()),
                       );
                     },
-                    icon: Icon(Icons.person),
-                    label: Text("Profile")),
+                    icon: Icon(Icons.person,color: Colors.white,),
+                    label: Text("Profile", style: TextStyle(color: Colors.white),)),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(

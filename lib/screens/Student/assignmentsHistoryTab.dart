@@ -55,7 +55,7 @@ class TasksHistory extends StatelessWidget {
         return Container(
           child: Center(
             child: Text(
-              "You do not have any Plans yet",
+              "You do not have any old tasks yet",
               style: TextStyle(fontSize: 20),
             ),
           ),

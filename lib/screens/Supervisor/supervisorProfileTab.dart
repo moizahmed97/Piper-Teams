@@ -79,8 +79,8 @@ class ProfileTab extends StatelessWidget {
               Navigator.pop(context);
               await _auth.signOut();
             },
-            icon: Icon(Icons.exit_to_app),
-            label: Text("Logout"),
+            icon: Icon(Icons.exit_to_app, color: Colors.white,),
+            label: Text("Logout", style: TextStyle(color: Colors.white)),
           )
         ],
       ),

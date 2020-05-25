@@ -67,8 +67,8 @@ class _TeamMemberControllerState extends State<TeamMemberController> {
                               child: ProfileTabS())),
                 );
               },
-              icon: Icon(Icons.person),
-              label: Text("Profile")),
+              icon: Icon(Icons.person, color: Colors.white),
+              label: Text("Profile", style: TextStyle(color: Colors.white),)),
         ],
       ),
       body: _buildMainDashboard(),

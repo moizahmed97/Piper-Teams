@@ -250,8 +250,8 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                     Navigator.pop(context);
                     await _auth.signOut();
                   },
-                  icon: Icon(Icons.exit_to_app),
-                  label: Text("Logout", style: TextStyle(fontSize: 15),),
+                  icon: Icon(Icons.exit_to_app,color: Colors.white),
+                  label: Text("Logout", style: TextStyle(fontSize: 15,color: Colors.white),),
                 )
               ],
               title: Text("Welcome to Piper Teams",
