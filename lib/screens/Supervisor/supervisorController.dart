@@ -19,10 +19,25 @@ class SupervisorController extends StatefulWidget {
 class _SupervisorControllerState extends State<SupervisorController>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
     });
   }
 
@@ -39,87 +54,107 @@ class _SupervisorControllerState extends State<SupervisorController>
       );
   }
 
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<SimpleUser>(context);
     if (user != null) {
       return StreamProvider<List<SimpleTeamMemberInfo>>.value(
-        value: DatabaseService()
-            .getTeamMembersInTeam(user.uid, "Team"),
+        value: DatabaseService().getTeamMembersInTeam(user.uid, "Team"),
         // Get all the students (as documents) in the section specified as parameter for this InstructorX
         child: Scaffold(
-            appBar: AppBar(
-              title: _changeAppBarTitle(_selectedIndex),
-              //centerTitle: true,
-              actions: <Widget>[
-                FlatButton.icon(
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SupervisorProfilePage()),
-                      );
-                    },
-                    icon: Icon(Icons.person,color: Colors.white,),
-                    label: Text("Profile", style: TextStyle(color: Colors.white),)),
-              ],
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text(
-                    'Team Center',
+          appBar: AppBar(
+            title: _changeAppBarTitle(_selectedIndex),
+            //centerTitle: true,
+            actions: <Widget>[
+              FlatButton.icon(
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SupervisorProfilePage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
                   ),
+                  label: Text(
+                    "Profile",
+                    style: TextStyle(color: Colors.white),
+                  )),
+            ],
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text(
+                  'Team Center',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.people),
-                  title: Text(
-                    'Attendance',
-                  ),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                title: Text(
+                  'Attendance',
                 ),
-              ],
-              currentIndex: _selectedIndex,
-              selectedItemColor: Theme.of(context).primaryColor,
-              onTap: _onItemTapped,
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Theme.of(context).primaryColor,
+            onTap: _onItemTapped,
+          ),
+          body: SizedBox.expand(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() => _selectedIndex = index);
+              },
+              children: <Widget>[TeamCenter(), AttendanceTab()],
             ),
-          body: _buildMainDashboard(),
-          floatingActionButtonLocation: FloatingActionButtonLocation
-              .centerDocked,
+          ),
+          // body: _buildMainDashboard(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton.extended(
-            //ptooltip: "Add New Students",
             icon: Icon(Icons.add),
-            label: Text("Add Team Member", style: Theme
-                .of(context)
-                .textTheme
-                .button,),
+            label: Text(
+              "Add Team Member",
+              style: Theme.of(context).textTheme.button,
+            ),
             backgroundColor: Colors.teal[700],
             onPressed: () {
-              showDialog(context: context, builder: (context) {
-                return AlertDialog(
-                  title: Text("Share This Code:", style: TextStyle(
-                      color: Colors.black),),
-                  content: SelectableText(user.uid, style: TextStyle(
-                      fontSize: 12),),
-                  actions: <Widget>[
-                    IconButton(
-                      onPressed: () {
-                        Clipboard.setData(ClipboardData(text: user.uid));
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(Icons.content_copy), color: Colors.teal,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Share.share(user.uid);
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(Icons.share), color: Colors.teal,
-                    )
-                  ],
-
-                );
-              });
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(
+                        "Share This Code:",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      content: SelectableText(
+                        user.uid,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      actions: <Widget>[
+                        IconButton(
+                          onPressed: () {
+                            Clipboard.setData(ClipboardData(text: user.uid));
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(Icons.content_copy),
+                          color: Colors.teal,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Share.share(user.uid);
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(Icons.share),
+                          color: Colors.teal,
+                        )
+                      ],
+                    );
+                  });
             },
           ),
         ),
@@ -127,12 +162,5 @@ class _SupervisorControllerState extends State<SupervisorController>
     } else {
       return Loading();
     }
-  }
-
-  Container _buildMainDashboard() {
-    if (_selectedIndex == 0)
-      return Container(child: TeamCenter());
-    else
-      return Container(child: AttendanceTab());
   }
 }
