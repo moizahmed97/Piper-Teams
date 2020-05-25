@@ -151,7 +151,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
 
     return latestAssignment.map<Widget>((doc) {
         bool checked = false;
-
+  // PROBABLY HAVE TO USE KEYS 
       return CheckboxListTile(
         subtitle: _getAssignmentTypeText(doc.taskType),
         secondary: _getAssignmentTypeIcon(doc.taskType),
