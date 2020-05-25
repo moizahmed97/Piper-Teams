@@ -65,9 +65,9 @@ class TaskCard extends StatelessWidget {
   TextStyle gradeStyle(grade) {
     print(grade.runtimeType);
     if (grade == "Excellent")
-      return TextStyle(color: Colors.lightGreen);
+      return TextStyle(color: Colors.teal);
     else if (grade == "Very Good")
-      return TextStyle(color: Colors.indigo);
+      return TextStyle(color: Colors.teal);
     else if (grade == "Good")
       return TextStyle(color: Colors.yellow);
     else

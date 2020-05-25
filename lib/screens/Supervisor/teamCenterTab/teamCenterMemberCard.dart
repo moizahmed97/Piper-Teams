@@ -155,12 +155,12 @@ class TeamCenterMemberCard extends StatelessWidget {
       case "Very Good":
         return Text(
           "Very Good",
-          style: TextStyle(color: Colors.indigo),
+          style: TextStyle(color: Colors.teal),
         );
       case "Excellent":
         return Text(
           "Excellent",
-          style: TextStyle(color: Colors.green),
+          style: TextStyle(color: Colors.teal),
         );
       default:
         return Text(
@@ -184,7 +184,7 @@ class TeamCenterMemberCard extends StatelessWidget {
     else
       return CircleAvatar(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.teal,
         maxRadius: 9,
         child: Icon(
           Icons.check,

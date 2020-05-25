@@ -27,13 +27,13 @@ class BuildTheme {
         // For main body text
         bodyText2: TextStyle(
           fontFamily: 'Metropolis',
-          color: Colors.green,
+          color: Colors.teal,
           fontWeight: FontWeight.w600,
         ),
         // For smaller body text
         bodyText1: TextStyle(
             fontFamily: 'Metropolis',
-            color: Colors.green
+            color: Colors.teal
         ),
         // Used for any captions also the default for the bottom nav bar:
         caption: TextStyle(
@@ -56,14 +56,14 @@ class BuildTheme {
           fontSize: 15,
         ),
       ),
-      primaryColor: Colors.green,
-      indicatorColor: Colors.green,
+      primaryColor: Colors.teal,
+      indicatorColor: Colors.teal,
       scaffoldBackgroundColor: Colors.white,
-      accentColor: Colors.green,
+      accentColor: Colors.teal,
       buttonColor: Colors.white,
       backgroundColor: Colors.white,
       tabBarTheme: TabBarTheme(
-        labelColor: Colors.green,
+        labelColor: Colors.teal,
         unselectedLabelColor: Colors.grey,
       )
   );
@@ -92,13 +92,13 @@ class BuildTheme {
         // For main body text
         bodyText2: TextStyle(
           fontFamily: 'Metropolis',
-          color: Colors.green,
+          color: Colors.teal,
           fontWeight: FontWeight.w600,
         ),
         // For smaller body text
         bodyText1: TextStyle(
             fontFamily: 'Metropolis',
-            color: Colors.green
+            color: Colors.teal
         ),
         // Used for any captions also the default for the bottom nav bar:
         caption: TextStyle(
@@ -121,14 +121,14 @@ class BuildTheme {
           fontSize: 15,
         ),
       ),
-      primaryColor: Colors.indigo,
-      indicatorColor: Colors.indigo,
+      primaryColor: Colors.teal,
+      indicatorColor: Colors.teal,
       scaffoldBackgroundColor: Colors.grey,
-      accentColor: Colors.indigoAccent,
+      accentColor: Colors.tealAccent,
       buttonColor: Colors.white,
       backgroundColor: Colors.grey,
       tabBarTheme: TabBarTheme(
-        labelColor: Colors.indigo,
+        labelColor: Colors.teal,
         unselectedLabelColor: Colors.grey,
       )
   );

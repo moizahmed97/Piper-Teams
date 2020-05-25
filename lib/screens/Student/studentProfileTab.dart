@@ -39,7 +39,7 @@ class ProfileTabS extends StatelessWidget {
                         .button,
                   ),
                 ]),
-            color: Colors.indigo,
+            color: Colors.yellow,
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/supervisorHome');
@@ -68,7 +68,7 @@ class ProfileTabS extends StatelessWidget {
                         .button,
                   ),
                 ]),
-            color: Colors.indigo,
+            color: Colors.yellow,
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/userSwitchPage');

@@ -84,7 +84,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
                       height: 20,
                     ),
                     RaisedButton(
-                        color: Colors.green[400],
+                        color: Colors.teal[400],
                         child: Text(
                           'Update',
                           style: TextStyle(color: Colors.white),

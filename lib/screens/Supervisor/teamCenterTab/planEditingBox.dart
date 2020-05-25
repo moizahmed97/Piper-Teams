@@ -240,7 +240,7 @@ class _EditPlanState extends State<EditPlan> {
       ),
       actions: <Widget>[
         RaisedButton(
-            color: Colors.green[400],
+            color: Colors.teal[400],
             child: Text(
               'Cancel',
               style: TextStyle(color: Colors.white),
@@ -250,7 +250,7 @@ class _EditPlanState extends State<EditPlan> {
               Navigator.of(context).pop();
             }),
         RaisedButton(
-            color: Colors.green[400],
+            color: Colors.teal[400],
             child: !widget.edit
                 ? Text(
               'Update',

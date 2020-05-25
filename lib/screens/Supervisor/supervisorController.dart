@@ -93,7 +93,7 @@ class _SupervisorControllerState extends State<SupervisorController>
                 .of(context)
                 .textTheme
                 .button,),
-            backgroundColor: Colors.green[700],
+            backgroundColor: Colors.teal[700],
             onPressed: () {
               showDialog(context: context, builder: (context) {
                 return AlertDialog(
@@ -107,14 +107,14 @@ class _SupervisorControllerState extends State<SupervisorController>
                         Clipboard.setData(ClipboardData(text: user.uid));
                         Navigator.of(context).pop();
                       },
-                      icon: Icon(Icons.content_copy), color: Colors.green,
+                      icon: Icon(Icons.content_copy), color: Colors.teal,
                     ),
                     IconButton(
                       onPressed: () {
                         Share.share(user.uid);
                         Navigator.of(context).pop();
                       },
-                      icon: Icon(Icons.share), color: Colors.green,
+                      icon: Icon(Icons.share), color: Colors.teal,
                     )
                   ],
 

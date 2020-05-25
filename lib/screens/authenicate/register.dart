@@ -23,7 +23,7 @@ class _RegisterState extends State<Register> {
       borderSide: BorderSide(color: Colors.white, width: 2.0),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.greenAccent, width: 2.0),
+      borderSide: BorderSide(color: Colors.tealAccent, width: 2.0),
     ),
   );
   final _formKey = GlobalKey<FormState>();
@@ -87,7 +87,7 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                        color: Colors.green[400],
+                        color: Colors.teal[400],
                         child: Text(
                           'Register',
                           style: TextStyle(color: Colors.white),

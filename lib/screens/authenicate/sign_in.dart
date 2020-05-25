@@ -20,7 +20,7 @@ class _SignInState extends State<SignIn> {
       borderSide: BorderSide(color: Colors.white, width: 2.0),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.greenAccent, width: 2.0),
+      borderSide: BorderSide(color: Colors.tealAccent, width: 2.0),
     ),
   );
 
@@ -81,7 +81,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                        color: Colors.green[400],
+                        color: Colors.teal[400],
                         child: Text(
                           'Sign In',
                           style: TextStyle(color: Colors.white),

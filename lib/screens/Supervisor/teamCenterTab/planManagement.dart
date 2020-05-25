@@ -63,7 +63,7 @@ class _PlanManagementState extends State<PlanManagement> {
                       itemBuilder: (context, index) {
                         return Card(
                             elevation: 0,
-                            color: Colors.green,
+                            color: Colors.teal,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             margin: EdgeInsets.symmetric(horizontal: 5),
@@ -72,7 +72,7 @@ class _PlanManagementState extends State<PlanManagement> {
                               lineWidth: 15,
                               percent: documents[index].data["progress"],
                               backgroundColor: Colors.grey[400],
-                              progressColor: Colors.green[900],
+                              progressColor: Colors.teal[900],
                               header: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -195,7 +195,7 @@ class _PlanManagementState extends State<PlanManagement> {
                       effect: WormEffect(
                         spacing: 16.0,
                         dotColor: Colors.grey[400],
-                        activeDotColor: Colors.green[900],
+                        activeDotColor: Colors.teal[900],
                       ),
                     ),
                   ),

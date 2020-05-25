@@ -75,7 +75,7 @@ class _AttendanceTabState extends State<AttendanceTab> {
 
   Color attendanceColor(int attendance) {
     if (attendance == 1)
-      return Colors.green;
+      return Colors.teal;
     else if (attendance == 2)
       return Colors.orange[600];
     else

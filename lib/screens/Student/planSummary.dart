@@ -37,7 +37,7 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
                 elevation: 0.0,
                 child: Text(
                   "You do not have any Plans yet",
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.green),
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.teal),
                 ),
               );
             }
@@ -56,7 +56,7 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
           center: new Text(
             (doc['progress'] * 100).toInt().toString() + "%",
           ),
-          progressColor: Colors.green,
+          progressColor: Colors.teal,
         ),
         title: Text(
           '${doc['PlanType']}',

@@ -28,7 +28,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
             if (snapshot.data['supervisor'] == "")
               return Container(
                   child: RawMaterialButton(
-                splashColor: Colors.green,
+                splashColor: Colors.teal,
                 child: Center(
                     child: Text("Press Here \nto Join A Team",
                         textAlign: TextAlign.center)),
@@ -54,7 +54,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                           ),
                           actions: <Widget>[
                             RaisedButton(
-                                color: Colors.green[400],
+                                color: Colors.teal[400],
                                 child: Text(
                                   'Cancel',
                                   style: TextStyle(color: Colors.white),
@@ -63,7 +63,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                   Navigator.of(context).pop();
                                 }),
                             RaisedButton(
-                                color: Colors.green[400],
+                                color: Colors.teal[400],
                                 child: Text(
                                   'Enter',
                                   style: TextStyle(color: Colors.white),
