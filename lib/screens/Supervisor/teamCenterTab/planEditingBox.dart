@@ -30,11 +30,8 @@ class _EditPlanState extends State<EditPlan> {
 
   bool picker = true;
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return AlertDialog(
       title: Text(
         "Create A New Plan",
@@ -49,8 +46,11 @@ class _EditPlanState extends State<EditPlan> {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: <Widget>[
                   RaisedButton(
+                    color: Colors.tealAccent,
                     child: widget.startDate == null
-                        ? Text('Start Date')
+                        ? Text(
+                            'Start Date',
+                          )
                         : Text(DateFormat.yMMMd().format(widget.startDate)),
                     onPressed: () async {
                       final DateTime picked = await showDatePicker(
@@ -72,9 +72,13 @@ class _EditPlanState extends State<EditPlan> {
                         });
                     },
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
                   AbsorbPointer(
                     absorbing: picker,
                     child: RaisedButton(
+                      color: Colors.tealAccent,
                       child: widget.endDate == null
                           ? Text('End Date')
                           : Text(DateFormat.yMMMd().format(widget.endDate)),
@@ -103,23 +107,13 @@ class _EditPlanState extends State<EditPlan> {
               initialValue: widget.planText ?? '',
               keyboardType: TextInputType.number,
               decoration: textInputDecoration.copyWith(
-                  labelText: "From",),
+                labelText: "Plan",
+              ),
               validator: (val) =>
-                  val.isEmpty ? 'Please Enter the From field' : null,
+                  val.isEmpty ? 'Please Enter the Plan field' : null,
               onChanged: (val) => setState(() => widget.planText = val),
             ),
-            Divider(),
-            TextFormField(
-              initialValue: widget.planText ?? '',
-              keyboardType: TextInputType.number,
-              decoration: textInputDecoration.copyWith(
-                  labelText: "To", hintText: 'eg. 20'),
-              validator: (val) =>
-                  val.isEmpty ? 'Please Enter the to Field' : null,
-              onChanged: (val) => setState(() => widget.planText = val),
-            ),
-            widget.edit
-                ? DropdownButtonFormField(
+            DropdownButtonFormField(
                     items: planTypes.map((planType) {
                       return DropdownMenuItem(
                         value: planType,
@@ -135,13 +129,6 @@ class _EditPlanState extends State<EditPlan> {
                     },
                     isExpanded: true,
                   )
-                : Container(
-                    padding: EdgeInsets.all(24),
-                    child: Text(
-                      widget.planType,
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
-                  ),
           ],
         ),
       ),
@@ -172,16 +159,16 @@ class _EditPlanState extends State<EditPlan> {
               if (widget.edit) {
                 StudentDatabaseService().addPlan(
                     widget.teamMember,
-                    "Juz " + widget.planText,
-                    widget.startDate,
-                    widget.endDate,
+                    widget.planText,
+                    widget.startDate ?? DateTime.now(),
+                    widget.endDate ?? DateTime.now(),
                     widget.planType ?? "Critical");
               } else
                 StudentDatabaseService().updatePlan(
                     widget.teamMember,
                     widget.planText,
-                    widget.startDate,
-                    widget.endDate,
+                    widget.startDate ?? DateTime.now(),
+                    widget.endDate ?? DateTime.now(),
                     widget.planType);
               Navigator.pop(context);
             }),

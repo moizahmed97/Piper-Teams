@@ -16,7 +16,7 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
     final user = Provider.of<SimpleUser>(context);
     return StreamBuilder(
         stream: Firestore.instance
-            .collection("Student/${user.uid}/Plan/")
+            .collection("TeamMember/${user.uid}/Plan/")
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
@@ -59,11 +59,11 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
           progressColor: Colors.teal,
         ),
         title: Text(
-          '${doc['PlanType']}',
+          '${doc['planType']}',
           style: Theme.of(context).textTheme.bodyText2,
         ),
         subtitle: Text(
-          '${doc['from']} to ${doc['to']}',
+          '${doc['plan']}',
         ),
       );
     }).toList();

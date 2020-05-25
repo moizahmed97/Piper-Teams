@@ -114,7 +114,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                   width: 15,
                 ),
                 Text(
-                  "Sign in as ${user.teamMember}  (Supervisor)",
+                  "Sign in as ${user.teamMember}  (Team Member)",
                   style: Theme.of(context).textTheme.button,
                 ),
               ]),

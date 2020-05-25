@@ -63,8 +63,6 @@ class StudentDatabaseService {
       'plan': "Placeholder plan",
       'progress': 0.5,
       'status': true,
-      'from': "",
-      'to': ''
     });
   }
 
@@ -109,8 +107,7 @@ class StudentDatabaseService {
       'dateEnding': toDate,
       'dateStarting': fromDate,
       'planType': planType,
-      'from': fromPlan,
-      'plan': "",
+      'plan': fromPlan,
       'progress': 0.0,
       'status': true
     });
@@ -128,8 +125,7 @@ class StudentDatabaseService {
       'dateEnding': toDate,
       'dateStarting': fromDate,
       'planType': planType,
-      'from': fromPlan,
-      'plan': "",
+      'plan': fromPlan,
       'progress': 0.0,
       'status': true,
     });

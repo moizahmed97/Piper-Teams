@@ -78,9 +78,9 @@ class _PlanManagementState extends State<PlanManagement> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text(
-                                      documents[index].data["planType"],
+                                      "Priority: " + documents[index].data["planType"],
                                       style:
-                                          Theme.of(context).textTheme.headline5,
+                                          Theme.of(context).textTheme.headline6,
                                     ),
                                     Divider(
                                       color: Colors.black,
@@ -107,7 +107,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                         Theme.of(context).textTheme.headline5,
                                   ),
                                   Text(
-                                    (documents[index].data["planText"]),
+                                    (documents[index].data["plan"]),
                                     style:
                                         Theme.of(context).textTheme.headline6,
                                   ),
@@ -154,7 +154,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                                           .data["dateEnding"]
                                                           .toDate(),
                                                       planText: documents[index]
-                                                          .data["planText"],
+                                                          .data["plan"],
                                                       planType: documents[index]
                                                           .data["planType"],
                                                       edit: false,
