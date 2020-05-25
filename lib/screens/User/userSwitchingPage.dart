@@ -147,7 +147,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                   style: Theme.of(context).textTheme.button,
                 ),
               ]),
-          color: Colors.yellow,
+          color: Colors.green,
           onPressed: () {
             showDialog(
                 context: context,
@@ -231,7 +231,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                   style: Theme.of(context).textTheme.button,
                 ),
               ]),
-          color: Colors.yellow,
+          color: Colors.green,
           onPressed: () {
             Navigator.of(context).pushReplacementNamed('/supervisorHome');
           },
@@ -242,7 +242,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
     if (user != null) {
       return Container(
         child: Scaffold(
-          backgroundColor: Colors.teal[100],
+         //backgroundColor: Colors.teal[100],
             appBar: AppBar(
               actions: <Widget>[
                 FlatButton.icon(
