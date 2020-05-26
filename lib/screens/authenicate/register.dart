@@ -74,7 +74,7 @@ class _RegisterState extends State<Register> {
                         Container(
                           padding: EdgeInsets.fromLTRB(16.0, 100.0, 0.0, 0.0),
                           child: Text(
-                              'Simple Solution for Team Tasks Management',
+                              'Simple Solution for Managing your Team\'s tasks',
                               style: TextStyle(
                                   fontSize: 30.0, fontWeight: FontWeight.w100)),
                         ),
