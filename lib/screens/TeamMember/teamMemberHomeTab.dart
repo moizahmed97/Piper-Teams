@@ -17,10 +17,8 @@ class TeamMemberHomeTab extends StatefulWidget {
 }
 
 class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
-
   @override
   Widget build(BuildContext context) {
-
     final user = Provider.of<SimpleUser>(context);
 
     return StreamBuilder<DocumentSnapshot>(
@@ -73,11 +71,34 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                 onPressed: () async {
                                   TeamMemberDatabaseService()
                                       .addTeamMemberToTeam(user.uid,
-                                          snapshot.data['name'], sectionCode);
-                                  TeamMemberDatabaseService()
-                                      .addTeamMembersTeam(
-                                          sectionCode, user.uid);
-                                  Navigator.of(context).pop();
+                                          snapshot.data['name'], sectionCode)
+                                      .then((value) {
+                                    TeamMemberDatabaseService()
+                                        .addTeamMembersTeam(
+                                            sectionCode, user.uid);
+                                    Navigator.of(context).pop();
+                                  }).catchError((err) {
+                                   
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            content: Text("No such Team found"),
+                                            actions: <Widget>[
+                                              RaisedButton(
+                                                  color: Colors.teal[400],
+                                                  child: Text(
+                                                    'OK',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  onPressed: () async {
+                                                    Navigator.of(context).pop();
+                                                  }),
+                                            ],
+                                          );
+                                        });
+                                  });
                                 }),
                           ],
                         );
@@ -146,12 +167,10 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
         });
   }
 
-
   List<Widget> _getLatestAssignmentTiles(latestAssignment, context) {
-
     return latestAssignment.map<Widget>((doc) {
-        bool checked = false;
-  // PROBABLY HAVE TO USE KEYS 
+      bool checked = false;
+      // PROBABLY HAVE TO USE KEYS
       return CheckboxListTile(
         subtitle: _getAssignmentTypeText(doc.taskType),
         secondary: _getAssignmentTypeIcon(doc.taskType),

@@ -90,7 +90,7 @@ class TeamMemberDatabaseService {
         .document(pastedValue)
         .collection('Team')
         .document(teamMemberID)
-        .setData({
+        .updateData({
       'name': '$teamMemberName',
       'teamMemberID': teamMemberID,
     });
