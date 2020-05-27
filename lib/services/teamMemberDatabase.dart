@@ -90,7 +90,7 @@ class TeamMemberDatabaseService {
         .document(pastedValue)
         .collection('Team')
         .document(teamMemberID)
-        .updateData({
+        .setData({
       'name': '$teamMemberName',
       'teamMemberID': teamMemberID,
     });
@@ -196,7 +196,7 @@ class TeamMemberDatabaseService {
     Firestore.instance
         .collection("Supervisor")
         .document(supervisorID)
-        .collection("team")
+        .collection("Team")
         .document(teamMemberID)
         .delete();
   }
