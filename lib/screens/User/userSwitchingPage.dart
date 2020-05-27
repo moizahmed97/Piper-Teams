@@ -12,16 +12,33 @@ class UserSwitchingPage extends StatefulWidget {
   _UserSwitchingPageState createState() => _UserSwitchingPageState();
 }
 
-class _UserSwitchingPageState extends State<UserSwitchingPage> {
+class _UserSwitchingPageState extends State<UserSwitchingPage>
+    with SingleTickerProviderStateMixin {
   String managerName;
   String managerAge;
   String memberName;
   String memberAge;
   final AuthService _auth = AuthService();
 
+  AnimationController animationController;
+  Animation animation, delayedAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    animation = Tween(begin: 0.0, end: 1.0).animate(animationController);
+    delayedAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        curve: Interval(0.5, 1.0, curve: Curves.easeIn),
+        parent: animationController));
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<SimpleUser>(context);
+    animationController.forward();
+
     FlatButton getStudentButton() {
       if (user.teamMember == "") {
         return FlatButton(
@@ -61,7 +78,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             decoration: textInputDecoration.copyWith(
                                 labelText: "Name", hintText: 'eg. Ahmed'),
                             validator: (val) =>
-                            val.isEmpty ? 'Please enter a name' : null,
+                                val.isEmpty ? 'Please enter a name' : null,
                             onChanged: (val) =>
                                 setState(() => memberName = val),
                           ),
@@ -71,9 +88,8 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             decoration: textInputDecoration.copyWith(
                                 labelText: "Age", hintText: 'eg. 10'),
                             validator: (val) =>
-                            val.isEmpty ? 'Please enter an age' : null,
-                            onChanged: (val) =>
-                                setState(() => memberAge = val),
+                                val.isEmpty ? 'Please enter an age' : null,
+                            onChanged: (val) => setState(() => memberAge = val),
                           ),
                         ],
                       ),
@@ -86,10 +102,11 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () async {
-                            TeamMemberDatabaseService().createMember(
-                                user.uid, memberName, memberAge);
                             TeamMemberDatabaseService()
-                                .addTeamMemberUserToSimpleUser(user.uid, memberName);
+                                .createMember(user.uid, memberName, memberAge);
+                            TeamMemberDatabaseService()
+                                .addTeamMemberUserToSimpleUser(
+                                    user.uid, memberName);
                             Navigator.of(context)
                                 .pushReplacementNamed('/teamMemberHome');
                           }),
@@ -165,7 +182,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             decoration: textInputDecoration.copyWith(
                                 labelText: "Name", hintText: 'eg. Mohammed'),
                             validator: (val) =>
-                            val.isEmpty ? 'Please Enter a Name' : null,
+                                val.isEmpty ? 'Please Enter a Name' : null,
                             onChanged: (val) =>
                                 setState(() => managerName = val),
                           ),
@@ -175,7 +192,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                             decoration: textInputDecoration.copyWith(
                                 labelText: "Age", hintText: 'eg. 20'),
                             validator: (val) =>
-                            val.isEmpty ? 'Please Provide an Age' : null,
+                                val.isEmpty ? 'Please Provide an Age' : null,
                             onChanged: (val) =>
                                 setState(() => managerAge = val),
                           ),
@@ -201,8 +218,8 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
                           onPressed: () async {
                             DatabaseService().createSupervisor(
                                 user.uid, managerName, managerAge);
-                            DatabaseService().addSupervisorNameToUser(
-                                user.uid, managerName);
+                            DatabaseService()
+                                .addSupervisorNameToUser(user.uid, managerName);
                             Navigator.of(context)
                                 .pushReplacementNamed('/supervisorHome');
                           }),
@@ -240,35 +257,55 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
     }
 
     if (user != null) {
-      return Container(
-        child: Scaffold(
-         //backgroundColor: Colors.teal[100],
-            appBar: AppBar(
-              actions: <Widget>[
-                FlatButton.icon(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                    await _auth.signOut();
-                  },
-                  icon: Icon(Icons.exit_to_app,color: Colors.white),
-                  label: Text("Logout", style: TextStyle(fontSize: 15,color: Colors.white),),
-                )
-              ],
-              title: Text("Welcome to Piper Teams",
-                  style: Theme.of(context).textTheme.headline6),
-            ),
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Please Select the type of User", textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3,),
-                getInstructorButton(),
-                SizedBox(height: 50.0),
-                getStudentButton(),
-              ],
-            )),
+      return FadeTransition(
+        opacity: animation,
+        child: Container(
+          child: Scaffold(
+              //backgroundColor: Colors.teal[100],
+              appBar: AppBar(
+                actions: <Widget>[
+                  FlatButton.icon(
+                    onPressed: () async {
+                      Navigator.pop(context);
+                      await _auth.signOut();
+                    },
+                    icon: Icon(Icons.exit_to_app, color: Colors.white),
+                    label: Text(
+                      "Logout",
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                    ),
+                  )
+                ],
+                title: Text("Welcome to Piper Teams",
+                    style: Theme.of(context).textTheme.headline6),
+              ),
+              body: FadeTransition(
+                opacity: delayedAnimation,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Please Select the type of User",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    SizedBox(height: 30),
+                    getInstructorButton(),
+                    SizedBox(height: 50.0),
+                    getStudentButton(),
+                  ],
+                ),
+              )),
+        ),
       );
     } else {
       return Loading();
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
   }
 }
