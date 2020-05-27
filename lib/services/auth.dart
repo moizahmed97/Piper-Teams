@@ -25,11 +25,12 @@ class AuthService {
       FirebaseUser user = result.user;
       return user;
     } catch (error) {
-      if (error.toString() == "PlatformException(ERROR_NETWORK_REQUEST_FAILED, A network error (such as timeout, interrupted connection or unreachable host) has occurred., null)") {
+      if (error.toString() ==
+          "PlatformException(ERROR_NETWORK_REQUEST_FAILED, A network error (such as timeout, interrupted connection or unreachable host) has occurred., null)") {
         return 1;
       } else {
-      print("spacer "+ error.toString() + " spacer");
-      return null;
+        print("spacer " + error.toString() + " spacer");
+        return null;
       }
     }
   }
@@ -46,8 +47,10 @@ class AuthService {
 
       return _convertFirebaseUsertoUser(user);
     } catch (error) {
-      print(error.toString());
-      return null;
+      if (error.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
+        return 1;
+      } else
+        return null;
     }
   }
 

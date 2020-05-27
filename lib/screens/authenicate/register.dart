@@ -195,6 +195,12 @@ class _RegisterState extends State<Register>
                                                 error =
                                                     'Please supply a valid email';
                                               });
+                                            } else if (result == 1) {
+                                              setState(() {
+                                                loading = false;
+                                                error =
+                                                    'User already exists, please go to the Login Page';
+                                              });
                                             }
                                           }
                                         }),
