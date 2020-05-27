@@ -84,6 +84,22 @@ class TeamMemberDatabaseService {
     return document.snapshots();
   }
 
+  Future<bool> checkIfTeamExists(String pastedValue) async {
+    bool exists = false;
+    try {
+      await supervisorCollection
+        .document(pastedValue).get().then((doc) {
+        if (doc.exists)
+          exists = true;
+        else
+          exists = false;
+      });
+      return exists;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<void> addTeamMemberToTeam(
       teamMemberID, teamMemberName, pastedValue) async {
     await supervisorCollection
@@ -97,7 +113,7 @@ class TeamMemberDatabaseService {
   }
 
   // Method that updates the team member's plan
-  Future<void> updatePlan(String teamMemberID, String fromPlan, 
+  Future<void> updatePlan(String teamMemberID, String fromPlan,
       DateTime fromDate, DateTime toDate, String planType) async {
     CollectionReference planCollection =
         Firestore.instance.collection('TeamMember/$teamMemberID/Plan');
@@ -115,8 +131,8 @@ class TeamMemberDatabaseService {
 
   // Function to add a new plan for the given teamMember
 
-  Future<void> addPlan(String teamMember, String fromPlan,
-      DateTime fromDate, DateTime toDate, String planType) async {
+  Future<void> addPlan(String teamMember, String fromPlan, DateTime fromDate,
+      DateTime toDate, String planType) async {
     CollectionReference planCollection =
         Firestore.instance.collection('TeamMember/$teamMember/Plan');
 

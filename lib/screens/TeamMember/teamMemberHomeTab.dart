@@ -72,7 +72,11 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     onPressed: () async {
-                                      TeamMemberDatabaseService()
+
+                                      bool test = await TeamMemberDatabaseService().checkIfTeamExists(sectionCode); 
+                                  
+                                      if (test) {
+                                        TeamMemberDatabaseService()
                                           .addTeamMemberToTeam(
                                               user.uid,
                                               snapshot.data['name'],
@@ -87,7 +91,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                         Navigator.pop(context);
 
                                         _key.currentState.showSnackBar(SnackBar(
-                                          content: Text('No Such Team Found'),
+                                          content: Text('Cannot join the team at the moment'),
                                           duration: Duration(seconds: 5),
                                         ));
 
@@ -117,6 +121,14 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
 
                                         */
                                       });
+                                      } else {
+                                         Navigator.pop(context);
+
+                                        _key.currentState.showSnackBar(SnackBar(
+                                          content: Text('No Such Team Found'),
+                                          duration: Duration(seconds: 5),
+                                        ));
+                                      }
                                     }),
                               ],
                             );
