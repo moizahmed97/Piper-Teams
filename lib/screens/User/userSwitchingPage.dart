@@ -257,15 +257,14 @@ class _UserSwitchingPageState extends State<UserSwitchingPage> {
               title: Text("Welcome to Piper Teams",
                   style: Theme.of(context).textTheme.headline6),
             ),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  getInstructorButton(),
-                  SizedBox(height: 50.0),
-                  getStudentButton(),
-                ],
-              ),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("Please Select the type of User", textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3,),
+                getInstructorButton(),
+                SizedBox(height: 50.0),
+                getStudentButton(),
+              ],
             )),
       );
     } else {

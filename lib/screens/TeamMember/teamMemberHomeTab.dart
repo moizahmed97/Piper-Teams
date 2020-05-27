@@ -72,30 +72,33 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     onPressed: () async {
+                                      bool test =
+                                          await TeamMemberDatabaseService()
+                                              .checkIfTeamExists(sectionCode);
 
-                                      bool test = await TeamMemberDatabaseService().checkIfTeamExists(sectionCode); 
-                                  
                                       if (test) {
                                         TeamMemberDatabaseService()
-                                          .addTeamMemberToTeam(
-                                              user.uid,
-                                              snapshot.data['name'],
-                                              sectionCode)
-                                          .then((value) {
-                                        TeamMemberDatabaseService()
-                                            .addTeamMembersTeam(
-                                                sectionCode, user.uid);
-                                        Navigator.of(context).pop();
-                                      }).catchError((err) {
-                                        // Display a Snackbar
-                                        Navigator.pop(context);
+                                            .addTeamMemberToTeam(
+                                                user.uid,
+                                                snapshot.data['name'],
+                                                sectionCode)
+                                            .then((value) {
+                                          TeamMemberDatabaseService()
+                                              .addTeamMembersTeam(
+                                                  sectionCode, user.uid);
+                                          Navigator.of(context).pop();
+                                        }).catchError((err) {
+                                          // Display a Snackbar
+                                          Navigator.pop(context);
 
-                                        _key.currentState.showSnackBar(SnackBar(
-                                          content: Text('Cannot join the team at the moment'),
-                                          duration: Duration(seconds: 5),
-                                        ));
+                                          _key.currentState
+                                              .showSnackBar(SnackBar(
+                                            content: Text(
+                                                'Cannot join the team at the moment'),
+                                            duration: Duration(seconds: 5),
+                                          ));
 
-                                        /*  IN CASE WE WOULD LIKE TO SHOW ANOTHER DIALOG BOX INSTEAD OF A SNACKBAR 
+                                          /*  IN CASE WE WOULD LIKE TO SHOW ANOTHER DIALOG BOX INSTEAD OF A SNACKBAR 
                                         showDialog(
                                             context: context,
                                             builder: (context) {
@@ -120,9 +123,9 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                                             });
 
                                         */
-                                      });
+                                        });
                                       } else {
-                                         Navigator.pop(context);
+                                        Navigator.pop(context);
 
                                         _key.currentState.showSnackBar(SnackBar(
                                           content: Text('No Such Team Found'),
