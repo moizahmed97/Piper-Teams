@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:piper_team_tasks/screens/TeamMember/latestTaskTilesBuilder.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
@@ -138,7 +139,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                           });
                     },
                   ));
-                else
+                else // If the team member already has a team
                   return StreamBuilder<List<Task>>(
                       stream: DatabaseService().getLatestTask(user.uid),
                       builder: (context, snapshot) {
@@ -168,11 +169,8 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
 
                                   Card(
                                     elevation: 4.0,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: _getLatestAssignmentTiles(
-                                          latestTasks, context),
-                                    ),
+                                    child: LatestTaskTilesBuilder(
+                                              latestTasks: latestTasks)
                                   ),
 
                                   SizedBox(height: 10.0),
@@ -200,63 +198,5 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
               } else
                 return Loading();
             }));
-  }
-
-  List<Widget> _getLatestAssignmentTiles(latestAssignment, context) {
-    return latestAssignment.map<Widget>((doc) {
-      bool checked = false;
-      // PROBABLY HAVE TO USE KEYS
-      return CheckboxListTile(
-        subtitle: _getAssignmentTypeText(doc.taskType),
-        secondary: _getAssignmentTypeIcon(doc.taskType),
-        title: Text(
-          '${doc.task}',
-        ),
-        value: checked,
-        onChanged: (bool value) {
-          setState(() {
-            checked = value;
-          });
-        },
-      );
-    }).toList();
-  }
-
-  Icon _getAssignmentTypeIcon(int taskType) {
-    if (taskType == 1) {
-      return Icon(
-        Icons.priority_high,
-        color: Colors.black,
-      );
-    } else if (taskType == 2) {
-      return Icon(
-        Icons.work,
-        color: Colors.black,
-      );
-    } else {
-      return Icon(
-        Icons.calendar_today,
-        color: Colors.black,
-      );
-    }
-  }
-
-  Text _getAssignmentTypeText(int assignmentType) {
-    if (assignmentType == 1) {
-      return Text(
-        'Critical',
-        style: Theme.of(context).textTheme.bodyText2,
-      );
-    } else if (assignmentType == 2) {
-      return Text(
-        'Normal',
-        style: Theme.of(context).textTheme.bodyText2,
-      );
-    } else {
-      return Text(
-        'Low',
-        style: Theme.of(context).textTheme.bodyText2,
-      );
-    }
   }
 }

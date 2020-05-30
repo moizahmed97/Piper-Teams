@@ -23,8 +23,8 @@ class _RegisterState extends State<Register>
     animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
 
-    animation = Tween(begin: -1.0, end: 0.0).animate(CurvedAnimation(
-        curve: Curves.easeIn, parent: animationController));
+    animation = Tween(begin: -1.0, end: 0.0).animate(
+        CurvedAnimation(curve: Curves.easeIn, parent: animationController));
 
     delayedAnimation = Tween(begin: -1.0, end: 0.0).animate(CurvedAnimation(
         curve: Interval(0.5, 1.0, curve: Curves.easeIn),
@@ -250,7 +250,8 @@ class _RegisterState extends State<Register>
 
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+
+    super.dispose();
   }
 }
