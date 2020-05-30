@@ -16,10 +16,10 @@ class _TaskTileState extends State<TaskTile> {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-      subtitle: _getAssignmentTypeText(widget.task.taskType),
+      subtitle: _getAssignmentTypeText(widget.task.taskType, checked),
       secondary: _getAssignmentTypeIcon(widget.task.taskType),
       title: Text(
-        '${widget.task.task}',
+        '${widget.task.task}', style: TextStyle(decoration: checked ? TextDecoration.lineThrough : TextDecoration.none),
       ),
       value: checked,
       onChanged: (bool value) {
@@ -49,21 +49,24 @@ class _TaskTileState extends State<TaskTile> {
     }
   }
 
-  Text _getAssignmentTypeText(int assignmentType) {
+  Text _getAssignmentTypeText(int assignmentType, bool checked) {
+    TextStyle incompleteStyle = Theme.of(context).textTheme.bodyText2;
+    TextStyle completedStyle = Theme.of(context).textTheme.bodyText2.copyWith(decoration:TextDecoration.lineThrough, color: Colors.green);
+
     if (assignmentType == 1) {
       return Text(
         'Critical',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: checked ? completedStyle : incompleteStyle,
       );
     } else if (assignmentType == 2) {
       return Text(
         'Normal',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: checked ? completedStyle : incompleteStyle,
       );
     } else {
       return Text(
         'Low',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: checked ? completedStyle : incompleteStyle,
       );
     }
   }
