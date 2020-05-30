@@ -212,17 +212,17 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (taskType == 1) {
       return Text(
         'Critical',
-        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.blue),
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.deepOrange),
       );
     } else if (taskType == 2) {
       return Text(
         'Normal',
-        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.indigo),
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.blue),
       );
     } else  if (taskType == 3) {
       return Text(
         'Low',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.green),
       );
     }
     else {

@@ -19,7 +19,11 @@ class _TaskTileState extends State<TaskTile> {
       subtitle: _getAssignmentTypeText(widget.task.taskType, checked),
       secondary: _getAssignmentTypeIcon(widget.task.taskType),
       title: Text(
-        '${widget.task.task}', style: TextStyle(decoration: checked ? TextDecoration.lineThrough : TextDecoration.none),
+        '${widget.task.task}',
+        style: TextStyle(
+            decorationThickness: 2.85,
+            decoration:
+                checked ? TextDecoration.lineThrough : TextDecoration.none),
       ),
       value: checked,
       onChanged: (bool value) {
@@ -51,22 +55,31 @@ class _TaskTileState extends State<TaskTile> {
 
   Text _getAssignmentTypeText(int assignmentType, bool checked) {
     TextStyle incompleteStyle = Theme.of(context).textTheme.bodyText2;
-    TextStyle completedStyle = Theme.of(context).textTheme.bodyText2.copyWith(decoration:TextDecoration.lineThrough, color: Colors.green);
+    TextStyle completedStyle = Theme.of(context).textTheme.bodyText2.copyWith(
+          decoration: TextDecoration.lineThrough,
+          decorationThickness: 2.85,
+        );
 
     if (assignmentType == 1) {
       return Text(
         'Critical',
-        style: checked ? completedStyle : incompleteStyle,
+        style: checked
+            ? completedStyle.copyWith(color: Colors.deepOrange)
+            : incompleteStyle.copyWith(color: Colors.deepOrange),
       );
     } else if (assignmentType == 2) {
       return Text(
         'Normal',
-        style: checked ? completedStyle : incompleteStyle,
+        style: checked
+            ? completedStyle.copyWith(color: Colors.blue)
+            : incompleteStyle.copyWith(color: Colors.blue),
       );
     } else {
       return Text(
         'Low',
-        style: checked ? completedStyle : incompleteStyle,
+        style: checked
+            ? completedStyle.copyWith(color: Colors.green)
+            : incompleteStyle.copyWith(color: Colors.green),
       );
     }
   }
