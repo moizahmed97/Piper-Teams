@@ -21,11 +21,12 @@ class _TaskTileState extends State<TaskTile> {
       title: Text(
         '${widget.task.task}',
         style: TextStyle(
+            color: _getTaskTextColor(widget.task.taskType),
             decorationThickness: 2.85,
             decoration:
                 checked ? TextDecoration.lineThrough : TextDecoration.none),
       ),
-      value: checked,
+      value: checked ?? widget.task.status,
       onChanged: (bool value) {
         setState(() {
           checked = value;
@@ -38,17 +39,17 @@ class _TaskTileState extends State<TaskTile> {
     if (taskType == 1) {
       return Icon(
         Icons.priority_high,
-        color: Colors.black,
+        color: Colors.deepOrange,
       );
     } else if (taskType == 2) {
       return Icon(
         Icons.work,
-        color: Colors.black,
+        color: Colors.blue,
       );
     } else {
       return Icon(
         Icons.calendar_today,
-        color: Colors.black,
+        color: Colors.green,
       );
     }
   }
@@ -81,6 +82,16 @@ class _TaskTileState extends State<TaskTile> {
             ? completedStyle.copyWith(color: Colors.green)
             : incompleteStyle.copyWith(color: Colors.green),
       );
+    }
+  }
+
+  Color _getTaskTextColor(int assignmentType) {
+    if (assignmentType == 1) {
+      return Colors.deepOrange;
+    } else if (assignmentType == 2) {
+      return Colors.blue;
+    } else {
+      return Colors.green;
     }
   }
 }

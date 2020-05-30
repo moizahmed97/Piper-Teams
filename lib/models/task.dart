@@ -3,8 +3,8 @@ class Task {
   DateTime deadline;
   int taskType; // 0 for Critical, 1 for Normal or 2 for Low
   String feedback;
-  bool status; //completed the assignment or incomplete
-  String grade;
+  bool status; //completed the task or incomplete
+  String grade;   // Ignore for now will remove later
   String task;
 
   Task({
