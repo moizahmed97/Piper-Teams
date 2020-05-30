@@ -23,14 +23,14 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
         AnimationController(vsync: this, duration: Duration(seconds: 2));
 
     animation = Tween(begin: -1.0, end: 0.0).animate(CurvedAnimation(
-        curve: Curves.fastOutSlowIn, parent: animationController));
+        curve: Curves.easeIn, parent: animationController));
 
     delayedAnimation = Tween(begin: 1.0, end: 0.0).animate(CurvedAnimation(
-        curve: Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
+        curve: Interval(0.5, 1.0, curve: Curves.easeIn),
         parent: animationController));
 
     muchDelayedAnimation = Tween(begin: 1.0, end: 0.0).animate(CurvedAnimation(
-        curve: Interval(0.8, 1.0, curve: Curves.fastOutSlowIn),
+        curve: Interval(0.8, 1.0, curve: Curves.easeIn),
         parent: animationController));
   }
 
