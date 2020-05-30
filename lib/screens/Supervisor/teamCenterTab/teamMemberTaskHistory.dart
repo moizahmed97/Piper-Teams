@@ -3,8 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
-import 'package:piper_team_tasks/screens/TeamMember/taskCard.dart';
-import 'package:piper_team_tasks/screens/TeamMember/nextPlanTaskCard.dart';
+import 'package:piper_team_tasks/screens/TeamMember/tasksHistoryTaskCard.dart';
 
 class TeamMemberHistory extends StatefulWidget {
   @override
@@ -29,33 +28,7 @@ class _TeamMemberHistoryState extends State<TeamMemberHistory> {
               child: ListView.builder(
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return Column(
-                        children: <Widget>[
-                          SizedBox(height: 10),
-                          Card(
-                            elevation: 0.0,
-                            child: Text(
-                              "Next Plan Tasks",
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                          ),
-                          NextPlanTaskCard(
-                              task: tasks[index]),
-                          SizedBox(height: 50),
-                          Divider(thickness: 3,),
-                          Card(
-                            elevation: 0.0,
-                            child: Text(
-                              "Upcoming Plan Tasks",
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                          ),
-                        ],
-                      );
-                    } else {
                       return TaskCard(task: tasks[index]);
-                    }
                   }),
             );
           } else {
