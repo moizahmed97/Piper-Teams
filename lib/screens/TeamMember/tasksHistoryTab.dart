@@ -7,14 +7,14 @@ import 'package:piper_team_tasks/widgets/loading.dart';
 class TasksHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Get the documents in the assignments collection for this student
+    // Get the documents in the latest collection for this team member
     final tasks = Provider.of<List<Task>>(context);
 
     if (tasks != null) {
       tasks
           .removeWhere((element) => element.feedback == "Placeholder Feedback");
-      // Remove all the assignments before the current date time
-      tasks.removeWhere((element) => element.deadline.isBefore(DateTime.now()));
+      // Remove all the tasks that have been completed
+      tasks.removeWhere((element) => element.status == false);
       if (tasks.length != 0) {
         return Container(
           child: ListView.builder(

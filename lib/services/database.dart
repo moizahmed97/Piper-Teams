@@ -49,7 +49,7 @@ class DatabaseService {
   Stream<List<Task>> getTeamMemberTasks(teamMemberID) {
     try {
       final CollectionReference teamMemberTasksCollection =
-          Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
+          Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
       return teamMemberTasksCollection
           .orderBy('deadline', descending: false)
           .snapshots()

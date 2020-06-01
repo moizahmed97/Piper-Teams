@@ -25,9 +25,9 @@ class TaskCard extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.assignment, color: Colors.black),
-            trailing: displayGrade(task.grade),
-            title: displayAssignmentType(task.taskType, context),
-            subtitle: Text(
+          //  trailing: Text(task.feedback),
+            subtitle: displayAssignmentType(task.taskType, context),
+            title: Text(
               "${task.task}"
             ),
           )
@@ -40,17 +40,17 @@ class TaskCard extends StatelessWidget {
     if (taskType == 1) {
       return Text(
         'Critical',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.deepOrange),
       );
     } else if (taskType == 2) {
       return Text(
         'Normal',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.blue),
       );
     } else {
       return Text(
         'Low',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.green),
       );
     }
   }

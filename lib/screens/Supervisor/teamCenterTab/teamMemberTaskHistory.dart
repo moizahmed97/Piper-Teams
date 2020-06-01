@@ -22,8 +22,8 @@ class _TeamMemberHistoryState extends State<TeamMemberHistory> {
             List<Task> tasks = snapshot.data;
             tasks.removeWhere(
                 (element) => element.feedback == "Placeholder Feedback");
-            tasks.removeWhere(
-                (element) => element.deadline.isBefore(DateTime.now()));
+            // Remove all the tasks that have been completed
+      tasks.removeWhere((element) => element.status == false);
             return Container(
               child: ListView.builder(
                   itemCount: tasks.length,
