@@ -89,7 +89,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
                         ),
                         onPressed: () async {
                           var currentDateTime = DateTime.now();
-                          DatabaseService().updateLatestTask(
+                          DatabaseService().createNewTask(
                               memberID,
                               Task(
                                   task: _task ??

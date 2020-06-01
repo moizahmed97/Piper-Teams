@@ -101,9 +101,9 @@ class TeamCenterMemberCard extends StatelessWidget {
               aspectRatio: 1.33,
               child: Column(
                 children: <Widget>[
-                  completion(doc.grade),
+                  completion(doc.status),
                   Text("Status:", style: TextStyle(color: Colors.black)),
-                  ratingsDisplay(doc.grade)
+                  ratingsDisplay(doc.status)
                 ],
               ),
             ),
@@ -140,38 +140,22 @@ class TeamCenterMemberCard extends StatelessWidget {
     }
   }
 
-  Text ratingsDisplay(String rating) {
-    switch (rating) {
-      case "Poor":
-        return Text(
-          "Poor",
-          style: TextStyle(color: Colors.red),
-        );
-      case "Good":
-        return Text(
-          "Good",
-          style: TextStyle(color: Colors.orange),
-        );
-      case "Very Good":
-        return Text(
-          "Very Good",
-          style: TextStyle(color: Colors.teal),
-        );
-      case "Excellent":
-        return Text(
-          "Excellent",
-          style: TextStyle(color: Colors.teal),
-        );
-      default:
-        return Text(
-          "Incomplete",
-          style: TextStyle(color: Colors.orange),
-        );
+  Text ratingsDisplay(bool status) {
+    if (status) {
+      return Text(
+        "Complete",
+        style: TextStyle(color: Colors.teal),
+      );
+    } else {
+      return Text(
+        "Incomplete",
+        style: TextStyle(color: Colors.orange),
+      );
     }
   }
 
-  CircleAvatar completion(String complete) {
-    if (complete == "Incomplete")
+  CircleAvatar completion(bool complete) {
+    if (!complete)
       return CircleAvatar(
         foregroundColor: Colors.white,
         backgroundColor: Colors.orange,
@@ -212,20 +196,24 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (taskType == 1) {
       return Text(
         'Critical',
-        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.deepOrange),
+        style: Theme.of(context)
+            .textTheme
+            .bodyText2
+            .copyWith(color: Colors.deepOrange),
       );
     } else if (taskType == 2) {
       return Text(
         'Normal',
-        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.blue),
+        style:
+            Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.blue),
       );
-    } else  if (taskType == 3) {
+    } else if (taskType == 3) {
       return Text(
         'Low',
-        style: Theme.of(context).textTheme.bodyText2.copyWith(color:Colors.green),
+        style:
+            Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.green),
       );
-    }
-    else {
+    } else {
       return Text(
         'Unknown',
         style: Theme.of(context).textTheme.bodyText2,
