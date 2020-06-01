@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:piper_team_tasks/models/task.dart';
+import 'package:piper_team_tasks/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:piper_team_tasks/models/simpleuser.dart';
 
 class TaskTile extends StatefulWidget {
   final Task task;
@@ -11,12 +14,14 @@ class TaskTile extends StatefulWidget {
 }
 
 class _TaskTileState extends State<TaskTile> {
-  bool checked = false;
+  bool checked;
 
   @override
   Widget build(BuildContext context) {
+        final user = Provider.of<SimpleUser>(context);
+
     return CheckboxListTile(
-      subtitle: _getAssignmentTypeText(widget.task.taskType, checked),
+      subtitle: _getAssignmentTypeText(widget.task.taskType, checked ?? widget.task.status),
       secondary: _getAssignmentTypeIcon(widget.task.taskType),
       title: Text(
         '${widget.task.task}',
@@ -24,12 +29,13 @@ class _TaskTileState extends State<TaskTile> {
             color: _getTaskTextColor(widget.task.taskType),
             decorationThickness: 2.85,
             decoration:
-                checked ? TextDecoration.lineThrough : TextDecoration.none),
+                (checked ?? widget.task.status) ? TextDecoration.lineThrough : TextDecoration.none),
       ),
       value: checked ?? widget.task.status,
       onChanged: (bool value) {
         setState(() {
           checked = value;
+          DatabaseService().updateTaskStatus(user.uid, widget.task.grade, checked);
         });
       },
     );
