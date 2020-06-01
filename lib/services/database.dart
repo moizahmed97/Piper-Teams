@@ -65,14 +65,12 @@ class DatabaseService {
       QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return SimpleTeamMemberInfo(
-          name: doc.data['name'],
-          teamMemberID: doc.data['teamMemberID']);
+          name: doc.data['name'], teamMemberID: doc.data['teamMemberID']);
     }).toList();
   }
 
   // Returns all the teamMember documents in a team
-  Stream<List<SimpleTeamMemberInfo>> getTeamMembersInTeam(
-      supervisorID, team) {
+  Stream<List<SimpleTeamMemberInfo>> getTeamMembersInTeam(supervisorID, team) {
     final CollectionReference teamCollection =
         Firestore.instance.collection('Supervisor/$supervisorID/$team');
     return teamCollection.snapshots().map(_simpleTeamMemberInfoFromSnapshot);
@@ -136,9 +134,19 @@ class DatabaseService {
       'taskType': latestTask.taskType,
       'feedback': latestTask.feedback,
       'status': latestTask.status,
-      'grade': ref.documentID,   // Stores the documents ID which is ti be used for updating status
+      'grade': ref
+          .documentID, // Stores the documents ID which is to be used for updating status
       'task': latestTask.task,
     });
+  }
+
+  Future<void> updateTaskStatus(
+      String teamMemberID, String taskID, bool newStatus) async {
+    CollectionReference latestCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+    DocumentReference ref = latestCollection.document('$taskID');
+
+    return await ref.updateData({'status': newStatus});
   }
 
   SimpleUser _getUserDocFromSnapshot(DocumentSnapshot snapshot) {
