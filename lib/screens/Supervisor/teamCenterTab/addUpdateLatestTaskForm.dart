@@ -25,7 +25,6 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
   final _formKey = GlobalKey<FormState>();
   final List<String> taskTypes = ['Critical', 'Normal', 'Low'];
 
-
   // form values
   String _task;
   String _taskType;
@@ -39,7 +38,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
         stream: DatabaseService().getLatestTask(memberID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<Task> latestTasks = snapshot.data;
+            List<Task> latestTasks = snapshot.data;  //TODO remove all this stream stuff as its probably not needed
             return Form(
                 key: _formKey,
                 child: Column(
@@ -53,9 +52,10 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
                       height: 30,
                     ),
                     TextFormField(
-                      initialValue: latestTasks[0].task,
+                      initialValue: "",
                       keyboardType: TextInputType.number,
-                      decoration: textInputDecoration,
+                      decoration:
+                          textInputDecoration.copyWith(hintText: "New Task"),
                       validator: (val) =>
                           val.isEmpty ? 'Please enter the task' : null,
                       onChanged: (val) => setState(() => _task = val),
@@ -92,9 +92,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
                           DatabaseService().createNewTask(
                               memberID,
                               Task(
-                                  task: _task ??
-                                      snapshot.data[0].task ??
-                                      " ",
+                                  task: _task ?? snapshot.data[0].task ?? " ",
                                   taskType: _getTaskTypeInt(_taskType),
                                   grade: "Incomplete",
                                   feedback: "None",

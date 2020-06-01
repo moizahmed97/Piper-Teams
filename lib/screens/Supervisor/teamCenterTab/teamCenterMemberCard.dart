@@ -90,12 +90,13 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (latestTask.length != 0) {
       return latestTask.map<Widget>((doc) {
         return ListTile(
-          leading: _getTaskTypeIcon(doc.taskType),
+          trailing:  Icon(Icons.edit),  //_getTaskTypeIcon(doc.taskType),
+          // TODO Show a modal and allpw editing of this specific task
           subtitle: _getTaskTypeText(doc.taskType, context),
           title: Text(
             "${doc.task}",
           ),
-          trailing: RawMaterialButton(
+          leading: RawMaterialButton(
             onPressed: () {},
             child: AspectRatio(
               aspectRatio: 1.33,
