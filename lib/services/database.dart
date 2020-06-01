@@ -125,6 +125,22 @@ class DatabaseService {
     });
   }
 
+  Future<void> createNewTask(String teamMemberID, Task latestTask) async {
+    CollectionReference latestCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+    DocumentReference ref = latestCollection.document();
+
+    return await ref.setData({
+      'dateCreated': latestTask.dateCreated,
+      'deadline': latestTask.deadline,
+      'taskType': latestTask.taskType,
+      'feedback': latestTask.feedback,
+      'status': latestTask.status,
+      'grade': ref.documentID,   // Stores the documents ID which is ti be used for updating status
+      'task': latestTask.task,
+    });
+  }
+
   SimpleUser _getUserDocFromSnapshot(DocumentSnapshot snapshot) {
     return SimpleUser(
         email: snapshot.data['email'],
