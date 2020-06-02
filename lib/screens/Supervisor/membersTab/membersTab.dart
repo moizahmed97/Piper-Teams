@@ -21,7 +21,15 @@ class _AttendanceTabState extends State<AttendanceTab> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text("You have a ${students.length} Members in your team", style: Theme.of(context).textTheme.subtitle1,),
+              child: (students.length == 1)
+                  ? Text(
+                      "You have only ${students.length} Member in your team",
+                      style: Theme.of(context).textTheme.subtitle1,
+                    )
+                  : Text(
+                      "You have a ${students.length} Members in your team",
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
             ),
             ListView.builder(
                 scrollDirection: Axis.vertical,

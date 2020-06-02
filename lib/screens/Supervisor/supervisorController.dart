@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:piper_team_tasks/models/simpleTeamMemberInfo.dart';
-import 'package:piper_team_tasks/screens/Supervisor/membersTab/attendanceTab.dart';
+import 'package:piper_team_tasks/screens/Supervisor/membersTab/membersTab.dart';
 import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/teamCenterTab.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
