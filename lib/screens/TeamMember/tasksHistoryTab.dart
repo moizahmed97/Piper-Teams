@@ -20,7 +20,7 @@ class TasksHistory extends StatelessWidget {
           child: ListView.builder(
               itemCount: tasks.length,
               itemBuilder: (context, index) {
-                // pass each assignment to the class to get a card
+                // pass each task to the class to get a card
 
                 return TaskCard(task: tasks[index]);
               }),

@@ -27,7 +27,7 @@ class TaskCard extends StatelessWidget {
 
             leading: Icon(Icons.assignment, color: Colors.black),
           trailing: Text("Completed"),
-            subtitle: displayAssignmentType(task.taskType, context),
+            subtitle: displayTaskType(task.taskType, context),
             title: Text(
               "${task.task}"
             ),
@@ -37,7 +37,7 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Text displayAssignmentType(taskType, context) {
+  Text displayTaskType(taskType, context) {
     if (taskType == 1) {
       return Text(
         'Critical',

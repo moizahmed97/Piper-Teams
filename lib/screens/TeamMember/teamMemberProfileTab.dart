@@ -12,9 +12,9 @@ class TeamMemberProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<SimpleUser>(context);
-    final studentDoc = Provider.of<DocumentSnapshot>(context);
+    final memberDoc = Provider.of<DocumentSnapshot>(context);
 
-    FlatButton getInstructorButtonIfExists() {
+    FlatButton getSupervisorButtonIfExists() {
       if (user.supervisor != "") {
         return FlatButton(
             shape:
@@ -99,7 +99,7 @@ class TeamMemberProfilePage extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 50.0),
           Text(
-            ' STUDENT NAME',
+            ' TEAM MEMBER NAME',
             style: TextStyle(
               color: Colors.grey,
               letterSpacing: 2.0,
@@ -123,7 +123,7 @@ class TeamMemberProfilePage extends StatelessWidget {
             color: Colors.orange,
             onPressed: () {
               TeamMemberDatabaseService().teamMemberLeavesSection(
-                  user.uid, studentDoc.data['instructor']);
+                  user.uid, memberDoc.data['supervisor']);
               Navigator.pop(context);
             },
           ),
@@ -149,7 +149,7 @@ class TeamMemberProfilePage extends StatelessWidget {
           SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[getInstructorButtonIfExists()],
+            children: <Widget>[getSupervisorButtonIfExists()],
           ),
         ],
       ),

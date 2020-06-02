@@ -11,30 +11,30 @@ class _AttendanceTabState extends State<AttendanceTab> {
   Color attendance = Colors.grey;
   @override
   Widget build(BuildContext context) {
-    // Get the Student Document that has Name and ID in each document
-    final students = Provider.of<List<SimpleTeamMemberInfo>>(context);
-    students.removeWhere(
+    // Get the Team Member Document that has Name and ID in each document
+    final teamMembers = Provider.of<List<SimpleTeamMemberInfo>>(context);
+    teamMembers.removeWhere(
         (element) => element.teamMemberID == "Placeholder teamMemberID");
-    if (students.length != 0) {
+    if (teamMembers.length != 0) {
       return Container(
         child: Column(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: (students.length == 1)
+              child: (teamMembers.length == 1)
                   ? Text(
-                      "You have only ${students.length} Member in your team",
+                      "You have only ${teamMembers.length} Member in your team",
                       style: Theme.of(context).textTheme.subtitle1,
                     )
                   : Text(
-                      "You have a ${students.length} Members in your team",
+                      "You have a ${teamMembers.length} Members in your team",
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
             ),
             ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: students.length,
+                itemCount: teamMembers.length,
                 itemBuilder: (context, index) {
                   return Card(
                     elevation: 4.0,
@@ -48,7 +48,7 @@ class _AttendanceTabState extends State<AttendanceTab> {
                           horizontal: 20.0, vertical: 10.0),
                       title: Center(
                         child: Text(
-                          '${students[index].name}',
+                          '${teamMembers[index].name}',
                           style: Theme.of(context).textTheme.headline6,
                         ),
                       ),
@@ -62,7 +62,7 @@ class _AttendanceTabState extends State<AttendanceTab> {
       return Container(
         child: Center(
           child: Text(
-            "You do not have any Students yet",
+            "You do not have any Team Members yet",
             style: TextStyle(fontSize: 20),
           ),
         ),

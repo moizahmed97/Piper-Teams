@@ -108,7 +108,6 @@ class _EditPlanState extends State<EditPlan> {
             Divider(),
             TextFormField(
               initialValue: widget.planText ?? '',
-              keyboardType: TextInputType.number,
               decoration: textInputDecoration.copyWith(
                 labelText: "Plan",
               ),

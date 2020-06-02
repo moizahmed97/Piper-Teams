@@ -11,7 +11,7 @@ class SupervisorProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<SimpleUser>(context);
 
-    FlatButton getStudentButtonIfExists() {
+    FlatButton getMemberButtonIfExists() {
       if (user.teamMember != "") {
         return FlatButton(
             shape:
@@ -55,7 +55,7 @@ class SupervisorProfilePage extends StatelessWidget {
                     width: 15,
                   ),
                   Text(
-                    "Become a new Student",
+                    "Become a new Team Member",
                     style: Theme.of(context).textTheme.button,
                   ),
                 ]),
@@ -140,7 +140,7 @@ class SupervisorProfilePage extends StatelessWidget {
           SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[getStudentButtonIfExists()],
+            children: <Widget>[getMemberButtonIfExists()],
           ),
         ],
       ),

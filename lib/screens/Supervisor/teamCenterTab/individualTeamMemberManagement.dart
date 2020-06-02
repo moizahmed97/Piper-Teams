@@ -33,7 +33,7 @@ class _IndividualMemberManagementState
     return StreamBuilder(
       stream:
           Firestore.instance.collection("TeamMember/$member/Plan/").snapshots(),
-      // Get all the documents in the plan collection for this student
+      // Get all the documents in the plan collection for this member
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) return Loading();
         return DefaultTabController(
@@ -152,7 +152,7 @@ TabBarView _buildDashboard(
     BuildContext context, List<DocumentSnapshot> documents) {
   return TabBarView(children: [
     Provider<List<DocumentSnapshot>>.value(
-        // Pass down to the Tree all the documents we had gotten above ie In the Plans Collection for this student
+        // Pass down to the Tree all the documents we had gotten above ie In the Plans Collection for this member
         value: documents,
         child: PlanManagement()),
     TeamMemberHistory(),

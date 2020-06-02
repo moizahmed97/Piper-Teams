@@ -145,7 +145,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           List<Task> latestTasks = snapshot.data;
-                          // remove the placeholder latestAssignment
+                          // remove the placeholder latest task
                           latestTasks.removeWhere((element) =>
                               element.feedback == "Placeholder Feedback" ||
                               element.feedback == 'completed');

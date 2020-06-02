@@ -21,8 +21,8 @@ class _TaskTileState extends State<TaskTile> {
         final user = Provider.of<SimpleUser>(context);
 
     return CheckboxListTile(
-      subtitle: _getAssignmentTypeText(widget.task.taskType, checked ?? widget.task.status),
-      secondary: _getAssignmentTypeIcon(widget.task.taskType),
+      subtitle: _getTaskTypeText(widget.task.taskType, checked ?? widget.task.status),
+      secondary: _getTaskTypeIcon(widget.task.taskType),
       title: Text(
         '${widget.task.task}',
         style: TextStyle(
@@ -41,7 +41,7 @@ class _TaskTileState extends State<TaskTile> {
     );
   }
 
-  Icon _getAssignmentTypeIcon(int taskType) {
+  Icon _getTaskTypeIcon(int taskType) {
     if (taskType == 1) {
       return Icon(
         Icons.priority_high,
@@ -60,21 +60,21 @@ class _TaskTileState extends State<TaskTile> {
     }
   }
 
-  Text _getAssignmentTypeText(int assignmentType, bool checked) {
+  Text _getTaskTypeText(int taskType, bool checked) {
     TextStyle incompleteStyle = Theme.of(context).textTheme.bodyText2;
     TextStyle completedStyle = Theme.of(context).textTheme.bodyText2.copyWith(
           decoration: TextDecoration.lineThrough,
           decorationThickness: 2.85,
         );
 
-    if (assignmentType == 1) {
+    if (taskType == 1) {
       return Text(
         'Critical',
         style: checked
             ? completedStyle.copyWith(color: Colors.deepOrange)
             : incompleteStyle.copyWith(color: Colors.deepOrange),
       );
-    } else if (assignmentType == 2) {
+    } else if (taskType == 2) {
       return Text(
         'Normal',
         style: checked
@@ -91,10 +91,10 @@ class _TaskTileState extends State<TaskTile> {
     }
   }
 
-  Color _getTaskTextColor(int assignmentType) {
-    if (assignmentType == 1) {
+  Color _getTaskTextColor(int taskType) {
+    if (taskType == 1) {
       return Colors.deepOrange;
-    } else if (assignmentType == 2) {
+    } else if (taskType == 2) {
       return Colors.blue;
     } else {
       return Colors.green;

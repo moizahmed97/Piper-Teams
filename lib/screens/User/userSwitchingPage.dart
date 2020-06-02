@@ -40,7 +40,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
     final user = Provider.of<SimpleUser>(context);
     animationController.forward();
 
-    FlatButton getStudentButton() {
+    FlatButton getMemberButton() {
       if (user.teamMember == "") {
         return FlatButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -144,7 +144,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
       }
     }
 
-    FlatButton getInstructorButton() {
+    FlatButton getSupervisorButton() {
       if (user.supervisor == "") {
         return FlatButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -291,9 +291,9 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   SizedBox(height: 30),
-                  getInstructorButton(),
+                  getSupervisorButton(),
                   SizedBox(height: 50.0),
-                  getStudentButton(),
+                  getMemberButton(),
                 ],
               ),
             ),
