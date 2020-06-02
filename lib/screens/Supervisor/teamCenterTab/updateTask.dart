@@ -88,9 +88,10 @@ class _UpdateTaskState extends State<UpdateTask> {
                    Row(
                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                      children: <Widget>[
-                      RaisedButton(
+                      RaisedButton.icon(
+                        icon: Icon(Icons.update, color: Colors.white,),
                         color: Colors.teal[400],
-                        child: Text(
+                        label: Text(
                           'Update',
                           style: TextStyle(color: Colors.white),
                         ),
@@ -110,9 +111,10 @@ class _UpdateTaskState extends State<UpdateTask> {
                           Navigator.of(context).pop();
                         }),
                         
-                        RaisedButton(
+                        FlatButton.icon(
+                          icon: Icon(Icons.delete_outline, color: Colors.white,),
                         color: Colors.red,
-                        child: Text(
+                        label: Text(
                           'Delete',
                           style: TextStyle(color: Colors.white),
                         ),
