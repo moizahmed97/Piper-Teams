@@ -4,6 +4,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
+import 'package:piper_team_tasks/screens/TeamMember/updatePlanProgress.dart';
 
 class PlanSummaryWidget extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
             if (documents.length != 0) {
               return Card(
                 child: Column(
-                  children: _getPlanSummaryTiles(documents, context),
+                  children: _getPlanSummaryTiles(documents, context, user),
                 ),
               );
             } else {
@@ -48,13 +49,26 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
         });
   }
 
-  List<Widget> _getPlanSummaryTiles(documents, context) {
+  List<Widget> _getPlanSummaryTiles(documents, context, user) {
     return documents.map<Widget>((doc) {
       return ListTile(
         leading: IconButton(
           icon: Icon(Icons.edit, color: Colors.black),
           onPressed: () {
             // TODO Modal to let supervisor mark task as completed ie set feedback to completed
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child: Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 30.0, horizontal: 30.0),
+                        child: UpdatePlanProgress(
+                            teamMemberID: user.uid, planType: doc['planType'])),
+                  );
+                },
+                isScrollControlled: true);
           },
           tooltip: 'Update Plan Progress',
         ),
