@@ -15,17 +15,18 @@ class TaskCard extends StatelessWidget {
         elevation: 4.0,
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           SizedBox(height: 10.0),
-          Text( "Deadline: " +
+          Text( "Date Created: " +
             DateFormat.yMMMd().format(
-                task.deadline), style: Theme
+                task.dateCreated), style: Theme
               .of(context)
               .textTheme
               .overline,
           ),
           Divider(),
           ListTile(
+
             leading: Icon(Icons.assignment, color: Colors.black),
-          //  trailing: Text(task.feedback),
+          trailing: Text("Completed"),
             subtitle: displayAssignmentType(task.taskType, context),
             title: Text(
               "${task.task}"
