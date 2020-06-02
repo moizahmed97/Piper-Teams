@@ -3,6 +3,7 @@ import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
 
 class UpdateTask extends StatefulWidget {
   @override
@@ -85,7 +86,10 @@ class _UpdateTaskState extends State<UpdateTask> {
                     SizedBox(
                       height: 20,
                     ),
-                    RaisedButton(
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                     children: <Widget>[
+                      RaisedButton(
                         color: Colors.teal[400],
                         child: Text(
                           'Update',
@@ -106,6 +110,18 @@ class _UpdateTaskState extends State<UpdateTask> {
                                   dateCreated: currentDateTime));
                           Navigator.of(context).pop();
                         }),
+                        RaisedButton(
+                        color: Colors.red,
+                        child: Text(
+                          'Delete',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () async {
+                          TeamMemberDatabaseService().deleteTask(memberID, task.grade);
+                          Navigator.of(context).pop();
+                        }),
+                   ],)
+                        
                   ],
                 ));
           } else {
