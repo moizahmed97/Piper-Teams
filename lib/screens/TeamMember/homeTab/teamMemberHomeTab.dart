@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:piper_team_tasks/screens/TeamMember/latestTaskTilesBuilder.dart';
+import 'package:piper_team_tasks/screens/TeamMember/homeTab/latestTaskTilesBuilder.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';

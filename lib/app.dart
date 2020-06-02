@@ -7,7 +7,7 @@ import 'package:piper_team_tasks/screens/Supervisor/supervisorProfileTab.dart';
 import 'package:piper_team_tasks/screens/TeamMember/teamMemberController.dart';
 import 'package:piper_team_tasks/screens/TeamMember/teamMemberProfileTab.dart';
 import 'package:piper_team_tasks/screens/User/userSwitchingPage.dart';
-import 'package:piper_team_tasks/screens/authenicate/authenticate.dart';
+import 'package:piper_team_tasks/screens/Authentication/authenticate.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/theme.dart';
 

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
-import 'package:piper_team_tasks/screens/TeamMember/tasksHistoryTaskCard.dart';
+import 'package:piper_team_tasks/screens/TeamMember/tasksHistoryTab/tasksHistoryTaskCard.dart';
 
 class TeamMemberHistory extends StatefulWidget {
   @override

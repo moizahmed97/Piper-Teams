@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
-import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/planEditingBox.dart';
-import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/teamMemberTaskHistory.dart';
+import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/teamMemberManagement/planEditingBox.dart';
+import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/teamMemberManagement/teamMemberTaskHistory.dart';
 import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
 

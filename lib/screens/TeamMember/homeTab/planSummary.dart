@@ -4,7 +4,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
-import 'package:piper_team_tasks/screens/TeamMember/updatePlanProgress.dart';
+import 'package:piper_team_tasks/screens/TeamMember/homeTab/updatePlanProgress.dart';
 
 class PlanSummaryWidget extends StatefulWidget {
   @override

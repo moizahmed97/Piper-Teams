@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piper_team_tasks/screens/authenicate/register.dart';
+import 'package:piper_team_tasks/screens/Authentication/register.dart';
 
 import 'sign_in.dart';
 

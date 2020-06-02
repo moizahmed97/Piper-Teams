@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
-import 'package:piper_team_tasks/screens/TeamMember/tasksHistoryTaskCard.dart';
+import 'package:piper_team_tasks/screens/TeamMember/tasksHistoryTab/tasksHistoryTaskCard.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
 
 class TasksHistory extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/models/simpleTeamMemberInfo.dart';
 import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/addNewTaskForm.dart';
-import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/individualTeamMemberManagement.dart';
+import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/teamMemberManagement/individualTeamMemberManagement.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
 import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/updateTask.dart';
 
