@@ -90,8 +90,8 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (latestTask.length != 0) {
       return latestTask.map<Widget>((doc) {
         return ListTile(
-          trailing:  Icon(Icons.edit),  //_getTaskTypeIcon(doc.taskType),
-          // TODO Show a modal and allpw editing of this specific task
+          trailing:  Icon(Icons.edit),
+          // TODO Show a modal and allow editing of this specific task
           subtitle: _getTaskTypeText(doc.taskType, context),
           title: Text(
             "${doc.task}",
@@ -122,24 +122,7 @@ class TeamCenterMemberCard extends StatelessWidget {
     }
   }
 
-  Icon _getTaskTypeIcon(int taskType) {
-    if (taskType == 1) {
-      return Icon(
-        Icons.priority_high,
-        color: Colors.black,
-      );
-    } else if (taskType == 2) {
-      return Icon(
-        Icons.work,
-        color: Colors.black,
-      );
-    } else {
-      return Icon(
-        Icons.calendar_today,
-        color: Colors.black,
-      );
-    }
-  }
+
 
   Text ratingsDisplay(bool status) {
     if (status) {
