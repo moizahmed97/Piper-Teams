@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/services/database.dart';
 
-class AddUpdateTask extends StatefulWidget {
+class AddNewTask extends StatefulWidget {
   @override
-  _AddUpdateTaskState createState() => _AddUpdateTaskState();
+  _AddNewTaskState createState() => _AddNewTaskState();
 }
 
-class _AddUpdateTaskState extends State<AddUpdateTask> {
+class _AddNewTaskState extends State<AddNewTask> {
   final textInputDecoration = InputDecoration(
     fillColor: Colors.white,
     filled: true,
@@ -76,7 +76,7 @@ class _AddUpdateTaskState extends State<AddUpdateTask> {
             RaisedButton(
                 color: Colors.teal[400],
                 child: Text(
-                  'Update',
+                  'Add',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {

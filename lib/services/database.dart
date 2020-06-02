@@ -97,6 +97,24 @@ class DatabaseService {
     return latestCollection.snapshots().map(_latestTaskFromSnapshot);
   }
 
+  Task _taskFromSnapshot(DocumentSnapshot snapshot) {
+    return Task(
+      dateCreated: snapshot.data['dateCreated'].toDate(),
+      deadline: snapshot.data['deadline'].toDate(),
+      taskType: snapshot.data['taskType'],
+      feedback: snapshot.data['feedback'],
+      status: snapshot.data['status'],
+      grade: snapshot.data['grade'],
+      task: snapshot.data['task'],
+    );
+  }
+
+  Stream<Task> getTask(String teamMemberID, String taskID) {
+    CollectionReference latestCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+        return latestCollection.document(taskID).snapshots().map(_taskFromSnapshot);
+  }
+
   // Update the grade of a task for a team member with the specified task type
   Future<void> updateGradeForLatestTask(
       String teamMemberID, int taskType, String grade) async {

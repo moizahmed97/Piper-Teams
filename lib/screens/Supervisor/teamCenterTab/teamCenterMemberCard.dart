@@ -5,6 +5,7 @@ import 'package:piper_team_tasks/models/simpleTeamMemberInfo.dart';
 import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/addUpdateLatestTaskForm.dart';
 import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/individualTeamMemberManagement.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
+import 'package:piper_team_tasks/screens/Supervisor/teamCenterTab/updateTask.dart';
 
 // ignore: must_be_immutable
 class TeamCenterMemberCard extends StatelessWidget {
@@ -17,6 +18,9 @@ class TeamCenterMemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+  
+
     void _showAddTaskPanel() {
       showModalBottomSheet(
           context: context,
@@ -28,7 +32,7 @@ class TeamCenterMemberCard extends StatelessWidget {
                 child: Provider<String>.value(
                     // Pass the value of teamMember ID down the tree (To Management) using Provider
                     value: teamMember.teamMemberID,
-                    child: AddUpdateTask()),
+                    child: AddNewTask()),
               ),
             );
           },
@@ -61,7 +65,7 @@ class TeamCenterMemberCard extends StatelessWidget {
                       _showAddTaskPanel();
                     }),
                 trailing: IconButton(
-                  tooltip: 'Team Member details',
+                    tooltip: 'Team Member details',
                     icon: Icon(Icons.keyboard_arrow_right,
                         color: Colors.black, size: 40.0),
                     onPressed: () {
@@ -92,8 +96,27 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (latestTask.length != 0) {
       return latestTask.map<Widget>((doc) {
         return ListTile(
-          trailing:  IconButton(icon: Icon(Icons.edit), tooltip: 'Edit task', onPressed: () {},),
-          // TODO Show a modal and allow editing of this specific task
+          trailing: IconButton(
+            icon: Icon(Icons.edit),
+            tooltip: 'Edit task',
+            onPressed: () {
+                showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+                child: Provider<String>.value(
+                    // Pass the value of teamMember ID down the tree (To Management) using Provider
+                    value: teamMember.teamMemberID,
+                    child: UpdateTask(taskID: doc.grade,)),
+              ),
+            );
+          },
+          isScrollControlled: true);
+            },
+          ),
           subtitle: _getTaskTypeText(doc.taskType, context),
           title: Text(
             "${doc.task}",
@@ -123,8 +146,6 @@ class TeamCenterMemberCard extends StatelessWidget {
       return l;
     }
   }
-
-
 
   Text ratingsDisplay(bool status) {
     if (status) {
