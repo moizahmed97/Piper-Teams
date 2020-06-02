@@ -215,4 +215,15 @@ class TeamMemberDatabaseService {
         Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
     tasksCollection.document(taskID).delete();
   }
+
+
+// Method that updates the progress of plan from the team member view 
+  Future<void> updatePlanProgress(String teamMemberID, String planType, double progress) async {
+    CollectionReference plansCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Plan');
+        double progressDble = progress/100;
+    plansCollection.document(planType).updateData({
+      'progress' : progressDble 
+    });
+  }
 }
