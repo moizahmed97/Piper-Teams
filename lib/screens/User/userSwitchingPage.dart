@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
@@ -261,41 +262,108 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
         opacity: animation,
         child: Container(
           child: Scaffold(
-              //backgroundColor: Colors.teal[100],
-              appBar: AppBar(
-                actions: <Widget>[
-                  FlatButton.icon(
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      await _auth.signOut();
-                    },
-                    icon: Icon(Icons.exit_to_app, color: Colors.white),
-                    label: Text(
-                      "Logout",
-                      style: TextStyle(fontSize: 15, color: Colors.white),
-                    ),
-                  )
+            //backgroundColor: Colors.teal[100],
+            appBar: AppBar(
+              actions: <Widget>[
+                FlatButton.icon(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    await _auth.signOut();
+                  },
+                  icon: Icon(Icons.exit_to_app, color: Colors.white),
+                  label: Text(
+                    "Logout",
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                )
+              ],
+              title: Text("Welcome to Piper Teams",
+                  style: Theme.of(context).textTheme.headline6),
+            ),
+            body: FadeTransition(
+              opacity: delayedAnimation,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Please Select the type of User",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  SizedBox(height: 30),
+                  getInstructorButton(),
+                  SizedBox(height: 50.0),
+                  getStudentButton(),
                 ],
-                title: Text("Welcome to Piper Teams",
-                    style: Theme.of(context).textTheme.headline6),
               ),
-              body: FadeTransition(
-                opacity: delayedAnimation,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Please Select the type of User",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    SizedBox(height: 30),
-                    getInstructorButton(),
-                    SizedBox(height: 50.0),
-                    getStudentButton(),
-                  ],
-                ),
-              )),
+            ),
+            persistentFooterButtons: <Widget>[
+              FlatButton.icon(
+                  onPressed: () {
+                    showAboutDialog(
+                      applicationLegalese: 'MIT License 2020',
+                      useRootNavigator: true,
+                      context: context,
+                      applicationName: 'Piper teams',
+                      applicationVersion: '1.0',
+                    );
+                  },
+                  icon: Icon(Icons.info_outline),
+                  label: Text('Licenses')),
+              FlatButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.info_outline),
+                  label: Text('Tips')),
+              FlatButton.icon(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                              "Developed using Flutter by",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            content: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  RaisedButton.icon(
+                                      color: Colors.cyan,
+                                      onPressed: () {},
+                                      icon: Icon(Icons.person_outline),
+                                      label: Text('Moiz Ahmed')),
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  Text("AND"),
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  RaisedButton.icon(
+                                      color: Colors.cyan,
+                                      onPressed: () {},
+                                      icon: Icon(Icons.person_outline),
+                                      label: Text('Faisal Abdus Sattar')),
+                                ]),
+                            actions: <Widget>[
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("OK"))
+                            ],
+                          );
+                        });
+                  },
+                  icon: Icon(Icons.info_outline),
+                  label: Text('About'))
+            ],
+          ),
         ),
       );
     } else {

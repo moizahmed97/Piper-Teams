@@ -14,56 +14,56 @@ class SupervisorProfilePage extends StatelessWidget {
     FlatButton getStudentButtonIfExists() {
       if (user.teamMember != "") {
         return FlatButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  Icons.person_outline,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  "Sign in as ${user.teamMember}  (Team Member)",
-                  style: Theme.of(context).textTheme.button,
-                ),
-              ]),
-          color: Colors.green,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(
+                    Icons.person_outline,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Sign in as ${user.teamMember}  (Team Member)",
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                ]),
+            color: Colors.green,
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/teamMemberHome');
-            }
-        );
+            });
       } else {
         return FlatButton(
-           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  Icons.person_add,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  "Become a new Student",
-                  style: Theme.of(context).textTheme.button,
-                ),
-              ]),
-          color: Colors.green,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(
+                    Icons.person_add,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Become a new Student",
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                ]),
+            color: Colors.green,
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/userSwitchPage');
-            }
-        );
+            });
       }
     }
 
@@ -79,7 +79,10 @@ class SupervisorProfilePage extends StatelessWidget {
               Navigator.pop(context);
               await _auth.signOut();
             },
-            icon: Icon(Icons.exit_to_app, color: Colors.white,),
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.white,
+            ),
             label: Text("Logout", style: TextStyle(color: Colors.white)),
           )
         ],
@@ -88,8 +91,8 @@ class SupervisorProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 50.0),
-           Text(
-             ' TEACHER NAME',
+          Text(
+            ' TEACHER NAME',
             style: TextStyle(
               color: Colors.grey,
               letterSpacing: 2.0,
@@ -108,10 +111,10 @@ class SupervisorProfilePage extends StatelessWidget {
           SizedBox(height: 20.0),
           CupertinoButton(
             child: Text(
-              "Delete Account",
+              "Useful Tips",
               style: Theme.of(context).textTheme.button,
             ),
-            color: Colors.orange,
+            color: Colors.indigoAccent,
             onPressed: () => {},
           ),
           SizedBox(height: 10.0),
