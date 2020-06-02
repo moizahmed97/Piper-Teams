@@ -54,6 +54,7 @@ class _UpdatePlanProgressState extends State<UpdatePlanProgress> {
               min: 0,
               max: 100,
               divisions: 10,
+              activeColor: Colors.teal,
               label: "$_progress" ?? "0",
             ),
             SizedBox(

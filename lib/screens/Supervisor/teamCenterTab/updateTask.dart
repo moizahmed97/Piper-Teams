@@ -58,7 +58,6 @@ class _UpdateTaskState extends State<UpdateTask> {
                     ),
                     TextFormField(
                       initialValue: task.task,
-                      keyboardType: TextInputType.number,
                       decoration:
                           textInputDecoration.copyWith(hintText: "New Task"),
                       validator: (val) =>
@@ -110,6 +109,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                                   dateCreated: currentDateTime));
                           Navigator.of(context).pop();
                         }),
+                        
                         RaisedButton(
                         color: Colors.red,
                         child: Text(

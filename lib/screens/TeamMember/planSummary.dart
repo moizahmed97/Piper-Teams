@@ -55,7 +55,6 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
         leading: IconButton(
           icon: Icon(Icons.edit, color: Colors.black),
           onPressed: () {
-            // TODO Modal to let supervisor mark task as completed ie set feedback to completed
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -88,6 +87,21 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
         title: Text(
           '${doc['plan']}',
         ),
+        onLongPress: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Padding(
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 30.0, horizontal: 30.0),
+                      child: UpdatePlanProgress(
+                          teamMemberID: user.uid, planType: doc['planType'])),
+                );
+              },
+              isScrollControlled: true);
+        },
       );
     }).toList();
   }

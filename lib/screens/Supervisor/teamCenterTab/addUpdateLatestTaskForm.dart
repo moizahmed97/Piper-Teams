@@ -47,7 +47,6 @@ class _AddNewTaskState extends State<AddNewTask> {
             ),
             TextFormField(
               initialValue: "",
-              keyboardType: TextInputType.number,
               decoration: textInputDecoration.copyWith(hintText: "New Task"),
               validator: (val) => val.isEmpty ? 'Please enter the task' : null,
               onChanged: (val) => setState(() => _task = val),

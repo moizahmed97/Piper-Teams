@@ -147,7 +147,8 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                           List<Task> latestTasks = snapshot.data;
                           // remove the placeholder latestAssignment
                           latestTasks.removeWhere((element) =>
-                              element.feedback == "Placeholder Feedback");
+                              element.feedback == "Placeholder Feedback" ||
+                              element.feedback == 'completed');
                           return Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 15.0, horizontal: 5.0),
@@ -167,11 +168,15 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
 
                                   SizedBox(height: 5.0),
 
-                                  Card(
-                                    elevation: 4.0,
-                                    child: LatestTaskTilesBuilder(
-                                              latestTasks: latestTasks)
-                                  ),
+                                  (latestTasks.length == 0)
+                                      ? ListTile(
+                                          leading: Icon(Icons.info_outline),
+                                          title: Text("No Tasks for now"),
+                                        )
+                                      : Card(
+                                          elevation: 4.0,
+                                          child: LatestTaskTilesBuilder(
+                                              latestTasks: latestTasks)),
 
                                   SizedBox(height: 10.0),
                                   Card(

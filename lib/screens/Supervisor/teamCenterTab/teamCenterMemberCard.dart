@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/task.dart';
 import 'package:piper_team_tasks/models/simpleTeamMemberInfo.dart';
@@ -42,7 +43,7 @@ class TeamCenterMemberCard extends StatelessWidget {
     final latestTasks = Provider.of<List<Task>>(context);
     if (latestTasks != null) {
       latestTasks
-          .removeWhere((element) => element.feedback == "Placeholder Feedback");
+          .removeWhere((element) => element.feedback == "Placeholder Feedback" || element.feedback == "completed");
       return Card(
         elevation: 8.0,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -116,13 +117,32 @@ class TeamCenterMemberCard extends StatelessWidget {
           isScrollControlled: true);
             },
           ),
+          onLongPress: () {
+            showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+                child: Provider<String>.value(
+                    // Pass the value of teamMember ID down the tree (To Management) using Provider
+                    value: teamMember.teamMemberID,
+                    child: UpdateTask(taskID: doc.taskID,)),
+              ),
+            );
+          },
+          isScrollControlled: true);
+          },
+          
           subtitle: _getTaskTypeText(doc.taskType, context),
           title: Text(
             "${doc.task}",
           ),
           leading: RawMaterialButton(
+            
             onPressed: () {
-              // TODO Modal to let supervisor mark task as completed ie set feedback to completed
+              TeamMemberDatabaseService().setFeedbackToCompleted(teamMember.teamMemberID, doc.taskID);
             },
             child: AspectRatio(
               aspectRatio: 1.33,
