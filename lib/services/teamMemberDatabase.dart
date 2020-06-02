@@ -233,4 +233,13 @@ class TeamMemberDatabaseService {
       });
     }
   }
+
+
+   // Function to delete the task for a given team member with given taskID
+  Future<void> deleteTask(String teamMemberID, String taskID) async {
+    CollectionReference tasksCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+    tasksCollection.document(taskID).delete();
+  
+  }
 }
