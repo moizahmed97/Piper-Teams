@@ -95,13 +95,13 @@ class _UpdateTaskState extends State<UpdateTask> {
                           var currentDateTime = DateTime.now();
 
                           // TODO Update the task here not create
-                          DatabaseService().createNewTask(
+                          DatabaseService().updateExisitngTask(
                               memberID,
                               Task(
                                   task: _task ?? task.task ?? " ",
                                   taskType: _getTaskTypeInt(_taskType),
-                                  grade: "Incomplete",
-                                  feedback: "None",
+                                  grade: task.grade,
+                                  feedback: task.feedback,
                                   status: false,
                                   deadline: currentDateTime,
                                   dateCreated: currentDateTime));

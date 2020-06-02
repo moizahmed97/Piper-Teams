@@ -112,7 +112,7 @@ class DatabaseService {
   Stream<Task> getTask(String teamMemberID, String taskID) {
     CollectionReference latestCollection =
         Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
-        return latestCollection.document(taskID).snapshots().map(_taskFromSnapshot);
+    return latestCollection.document(taskID).snapshots().map(_taskFromSnapshot);
   }
 
   // Update the grade of a task for a team member with the specified task type
@@ -154,6 +154,22 @@ class DatabaseService {
       'status': latestTask.status,
       'grade': ref
           .documentID, // Stores the documents ID which is to be used for updating status
+      'task': latestTask.task,
+    });
+  }
+
+  Future<void> updateExisitngTask(String teamMemberID, Task latestTask) async {
+    CollectionReference latestCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+    DocumentReference ref = latestCollection.document(latestTask.grade);
+
+    return await ref.setData({
+      'dateCreated': latestTask.dateCreated,
+      'deadline': latestTask.deadline,
+      'taskType': latestTask.taskType,
+      'feedback': latestTask.feedback,
+      'status': latestTask.status,
+      'grade': latestTask.grade,
       'task': latestTask.task,
     });
   }
