@@ -94,7 +94,6 @@ class _UpdateTaskState extends State<UpdateTask> {
                         onPressed: () async {
                           var currentDateTime = DateTime.now();
 
-                          // TODO Update the task here not create
                           DatabaseService().updateExisitngTask(
                               memberID,
                               Task(
