@@ -114,6 +114,7 @@ class _SupervisorControllerState extends State<SupervisorController>
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
+            tooltip: 'Add new Team Member',
             child: Icon(Icons.add),
             backgroundColor: Colors.teal[700],
             onPressed: () {

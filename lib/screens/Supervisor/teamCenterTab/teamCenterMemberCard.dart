@@ -56,10 +56,12 @@ class TeamCenterMemberCard extends StatelessWidget {
                 ),
                 leading: IconButton(
                     icon: Icon(Icons.add, color: Colors.black, size: 40.0),
+                    tooltip: 'Add new task',
                     onPressed: () {
                       _showAddTaskPanel();
                     }),
                 trailing: IconButton(
+                  tooltip: 'Team Member details',
                     icon: Icon(Icons.keyboard_arrow_right,
                         color: Colors.black, size: 40.0),
                     onPressed: () {
@@ -90,7 +92,7 @@ class TeamCenterMemberCard extends StatelessWidget {
     if (latestTask.length != 0) {
       return latestTask.map<Widget>((doc) {
         return ListTile(
-          trailing:  Icon(Icons.edit),
+          trailing:  IconButton(icon: Icon(Icons.edit), tooltip: 'Edit task', onPressed: () {},),
           // TODO Show a modal and allow editing of this specific task
           subtitle: _getTaskTypeText(doc.taskType, context),
           title: Text(
