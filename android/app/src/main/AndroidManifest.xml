@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="piper_team_tasks"
+        android:label="Piper Teams"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
