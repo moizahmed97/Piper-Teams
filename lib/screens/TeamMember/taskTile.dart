@@ -35,7 +35,7 @@ class _TaskTileState extends State<TaskTile> {
       onChanged: (bool value) {
         setState(() {
           checked = value;
-          DatabaseService().updateTaskStatus(user.uid, widget.task.grade, checked);
+          DatabaseService().updateTaskStatus(user.uid, widget.task.taskID, checked);
         });
       },
     );

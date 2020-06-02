@@ -37,7 +37,10 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
                 elevation: 0.0,
                 child: Text(
                   "You do not have any Plans yet",
-                  style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.teal),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      .copyWith(color: Colors.teal),
                 ),
               );
             }
@@ -48,7 +51,13 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
   List<Widget> _getPlanSummaryTiles(documents, context) {
     return documents.map<Widget>((doc) {
       return ListTile(
-        leading: Icon(Icons.skip_previous, color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.edit, color: Colors.black),
+          onPressed: () {
+            // TODO Modal to let supervisor mark task as completed ie set feedback to completed
+          },
+          tooltip: 'Update Plan Progress',
+        ),
         trailing: new CircularPercentIndicator(
           radius: 50.0,
           lineWidth: 5.0,

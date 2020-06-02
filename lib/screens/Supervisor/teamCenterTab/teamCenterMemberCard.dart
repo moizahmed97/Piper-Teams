@@ -14,7 +14,6 @@ class TeamCenterMemberCard extends StatelessWidget {
 
   TeamCenterMemberCard({this.teamMember});
 
-  String defaultGrade = "Incomplete";
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +109,7 @@ class TeamCenterMemberCard extends StatelessWidget {
                 child: Provider<String>.value(
                     // Pass the value of teamMember ID down the tree (To Management) using Provider
                     value: teamMember.teamMemberID,
-                    child: UpdateTask(taskID: doc.grade,)),
+                    child: UpdateTask(taskID: doc.taskID,)),
               ),
             );
           },
@@ -122,7 +121,9 @@ class TeamCenterMemberCard extends StatelessWidget {
             "${doc.task}",
           ),
           leading: RawMaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              // TODO Modal to let supervisor mark task as completed ie set feedback to completed
+            },
             child: AspectRatio(
               aspectRatio: 1.33,
               child: Column(
@@ -184,20 +185,7 @@ class TeamCenterMemberCard extends StatelessWidget {
       );
   }
 
-  int gradeVal(String grades) {
-    switch (grades) {
-      case "Poor":
-        return 1;
-      case "Good":
-        return 2;
-      case "Very Good":
-        return 3;
-      case "Excellent":
-        return 4;
-      default:
-        return 0;
-    }
-  }
+  
 
   Text _getTaskTypeText(int taskType, context) {
     if (taskType == 1) {

@@ -39,7 +39,7 @@ class DatabaseService {
         taskType: doc.data['taskType'] ?? 0,
         feedback: doc.data['feedback'] ?? '',
         status: doc.data['status'] ?? false,
-        grade: doc.data['grade'] ?? '',
+        taskID: doc.data['taskID'] ?? '',
         task: doc.data['task'] ?? '',
       );
     }).toList();
@@ -49,7 +49,7 @@ class DatabaseService {
   Stream<List<Task>> getTeamMemberTasks(teamMemberID) {
     try {
       final CollectionReference teamMemberTasksCollection =
-          Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+          Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
       return teamMemberTasksCollection
           .orderBy('deadline', descending: false)
           .snapshots()
@@ -60,7 +60,7 @@ class DatabaseService {
     }
   }
 
-  // Returns Student attendance objects
+  // Returns simple team member objects
   List<SimpleTeamMemberInfo> _simpleTeamMemberInfoFromSnapshot(
       QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -76,7 +76,7 @@ class DatabaseService {
     return teamCollection.snapshots().map(_simpleTeamMemberInfoFromSnapshot);
   }
 
-  List<Task> _latestTaskFromSnapshot(QuerySnapshot snapshot) {
+  List<Task> _allTasksFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Task(
         dateCreated: doc.data['dateCreated'].toDate(),
@@ -84,17 +84,17 @@ class DatabaseService {
         taskType: doc.data['taskType'],
         feedback: doc.data['feedback'],
         status: doc.data['status'],
-        grade: doc.data['grade'],
+        taskID: doc.data['taskID'],
         task: doc.data['task'],
       );
     }).toList();
   }
 
-  // Get the LatestTask document for the given teamMember in the Latest Collection
-  Stream<List<Task>> getLatestTask(String teamMemberID) {
+  // Get the LatestTask document for the given teamMember in the Tasks Collection
+  Stream<List<Task>> getAllTasks(String teamMemberID) {
     CollectionReference latestCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
-    return latestCollection.snapshots().map(_latestTaskFromSnapshot);
+        Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
+    return latestCollection.snapshots().map(_allTasksFromSnapshot);
   }
 
   Task _taskFromSnapshot(DocumentSnapshot snapshot) {
@@ -104,81 +104,58 @@ class DatabaseService {
       taskType: snapshot.data['taskType'],
       feedback: snapshot.data['feedback'],
       status: snapshot.data['status'],
-      grade: snapshot.data['grade'],
+      taskID: snapshot.data['taskID'],
       task: snapshot.data['task'],
     );
   }
 
   Stream<Task> getTask(String teamMemberID, String taskID) {
-    CollectionReference latestCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
-    return latestCollection.document(taskID).snapshots().map(_taskFromSnapshot);
+    CollectionReference tasksCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
+    return tasksCollection.document(taskID).snapshots().map(_taskFromSnapshot);
   }
 
-  // Update the grade of a task for a team member with the specified task type
-  Future<void> updateGradeForLatestTask(
-      String teamMemberID, int taskType, String grade) async {
-    return await teamMemberCollection
-        .document(teamMemberID)
-        .collection('Latest')
-        .document('$taskType')
-        .updateData({'grade': grade});
-  }
+  
 
-  // Update the document LatestTask for a given team member
-  Future<void> updateLatestTask(String teamMemberID, Task latestTask) async {
-    CollectionReference latestCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
 
-    return await latestCollection.document('${latestTask.taskType}').setData({
-      'dateCreated': latestTask.dateCreated,
-      'deadline': latestTask.deadline,
-      'taskType': latestTask.taskType,
-      'feedback': latestTask.feedback,
-      'status': latestTask.status,
-      'grade': latestTask.grade,
-      'task': latestTask.task,
-    });
-  }
-
-  Future<void> createNewTask(String teamMemberID, Task latestTask) async {
-    CollectionReference latestCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
-    DocumentReference ref = latestCollection.document();
+  Future<void> createNewTask(String teamMemberID, Task newTask) async {
+    CollectionReference tasksCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
+    DocumentReference ref = tasksCollection.document();
 
     return await ref.setData({
-      'dateCreated': latestTask.dateCreated,
-      'deadline': latestTask.deadline,
-      'taskType': latestTask.taskType,
-      'feedback': latestTask.feedback,
-      'status': latestTask.status,
-      'grade': ref
+      'dateCreated': newTask.dateCreated,
+      'deadline': newTask.deadline,
+      'taskType': newTask.taskType,
+      'feedback': newTask.feedback,
+      'status': newTask.status,
+      'taskID': ref
           .documentID, // Stores the documents ID which is to be used for updating status
-      'task': latestTask.task,
+      'task': newTask.task,
     });
   }
 
-  Future<void> updateExisitngTask(String teamMemberID, Task latestTask) async {
-    CollectionReference latestCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
-    DocumentReference ref = latestCollection.document(latestTask.grade);
+  Future<void> updateExisitngTask(String teamMemberID, Task updatedTask) async {
+    CollectionReference tasksCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
+    DocumentReference ref = tasksCollection.document(updatedTask.taskID);
 
     return await ref.setData({
-      'dateCreated': latestTask.dateCreated,
-      'deadline': latestTask.deadline,
-      'taskType': latestTask.taskType,
-      'feedback': latestTask.feedback,
-      'status': latestTask.status,
-      'grade': latestTask.grade,
-      'task': latestTask.task,
+      'dateCreated': updatedTask.dateCreated,
+      'deadline': updatedTask.deadline,
+      'taskType': updatedTask.taskType,
+      'feedback': updatedTask.feedback,
+      'status': updatedTask.status,
+      'taskID': updatedTask.taskID,
+      'task': updatedTask.task,
     });
   }
 
   Future<void> updateTaskStatus(
       String teamMemberID, String taskID, bool newStatus) async {
-    CollectionReference latestCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
-    DocumentReference ref = latestCollection.document('$taskID');
+    CollectionReference tasksCollection =
+        Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
+    DocumentReference ref = tasksCollection.document('$taskID');
 
     return await ref.updateData({'status': newStatus});
   }

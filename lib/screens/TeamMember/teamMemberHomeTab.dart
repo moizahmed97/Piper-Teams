@@ -141,7 +141,7 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                   ));
                 else // If the team member already has a team
                   return StreamBuilder<List<Task>>(
-                      stream: DatabaseService().getLatestTask(user.uid),
+                      stream: DatabaseService().getAllTasks(user.uid),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           List<Task> latestTasks = snapshot.data;

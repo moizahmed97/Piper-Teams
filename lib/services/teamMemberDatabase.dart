@@ -21,21 +21,6 @@ class TeamMemberDatabaseService {
         .document(uid)
         .setData({'name': '$name', 'age': '$age', 'supervisor': ""});
 
-    // create the latest collection with dummy data
-    await teamMemberCollection
-        .document(uid)
-        .collection('Latest')
-        .document('placeholder')
-        .setData({
-      'taskType': 1,
-      'dateCreated': DateTime(2017, 9, 7, 17, 30),
-      'deadline': DateTime(2017, 9, 7, 17, 30),
-      'feedback': "Placeholder Feedback",
-      'grade': "Excellent",
-      'status': false,
-      'task': "Placeholder task",
-    });
-
     // create the tasks collection with dummy data
     await teamMemberCollection
         .document(uid)
@@ -46,7 +31,7 @@ class TeamMemberDatabaseService {
       'dateCreated': DateTime(2017, 9, 7, 17, 30),
       'deadline': DateTime(2017, 9, 7, 17, 30),
       'feedback': "Placeholder Feedback",
-      'grade': "Excellent",
+      'taskID': " ",
       'status': false,
       'task': "Placeholder Task",
     });
@@ -87,8 +72,7 @@ class TeamMemberDatabaseService {
   Future<bool> checkIfTeamExists(String pastedValue) async {
     bool exists = false;
     try {
-      await supervisorCollection
-        .document(pastedValue).get().then((doc) {
+      await supervisorCollection.document(pastedValue).get().then((doc) {
         if (doc.exists)
           exists = true;
         else
@@ -193,16 +177,7 @@ class TeamMemberDatabaseService {
           doc.reference.delete();
       }
     });
-    // Go to TeamMember/teamMember/Latest and delete all documents
-    await Firestore.instance
-        .collection('TeamMember/$teamMemberID/Latest')
-        .getDocuments()
-        .then((onValue) {
-      for (var doc in onValue.documents) {
-        if (doc.data['feedback'] != "Placeholder Feedback")
-          doc.reference.delete();
-      }
-    });
+
     // Go to TeamMember/teamMember and update the field of team to ""
     await teamMemberCollection
         .document(teamMemberID)
@@ -227,19 +202,17 @@ class TeamMemberDatabaseService {
         'dateCreated': assignment.dateCreated ?? DateTime.now(),
         'deadline': assignment.deadline ?? DateTime.now(),
         'feedback': "",
-        'grade': assignment.grade ?? "Ungraded",
+        'taskID': assignment.taskID ?? " ",
         'status': assignment.status ?? false,
         'task': assignment.task ?? "some task",
       });
     }
   }
 
-
-   // Function to delete the task for a given team member with given taskID
+  // Function to delete the task for a given team member with given taskID
   Future<void> deleteTask(String teamMemberID, String taskID) async {
     CollectionReference tasksCollection =
-        Firestore.instance.collection('TeamMember/$teamMemberID/Latest');
+        Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
     tasksCollection.document(taskID).delete();
-  
   }
 }

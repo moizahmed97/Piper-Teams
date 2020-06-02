@@ -103,7 +103,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                               Task(
                                   task: _task ?? task.task ?? " ",
                                   taskType: _getTaskTypeInt(_taskType),
-                                  grade: task.grade,
+                                  taskID: task.taskID,
                                   feedback: task.feedback,
                                   status: false,
                                   deadline: currentDateTime,
@@ -117,7 +117,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () async {
-                          TeamMemberDatabaseService().deleteTask(memberID, task.grade);
+                          TeamMemberDatabaseService().deleteTask(memberID, task.taskID);
                           Navigator.of(context).pop();
                         }),
                    ],)

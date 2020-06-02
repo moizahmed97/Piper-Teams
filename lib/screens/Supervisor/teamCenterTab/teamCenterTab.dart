@@ -27,7 +27,7 @@ class TeamCenter extends StatelessWidget {
                 // Wrap this in the stream for latest task for teamMembers[index].teamMemberID
                 return StreamProvider<List<Task>>.value(
                     value: DatabaseService()
-                        .getLatestTask(teamMembers[index].teamMemberID),
+                        .getAllTasks(teamMembers[index].teamMemberID),
                     child: TeamCenterMemberCard(teamMember: teamMembers[index]));
               }),
         );

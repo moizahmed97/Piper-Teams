@@ -4,7 +4,7 @@ class Task {
   int taskType; // 0 for Critical, 1 for Normal or 2 for Low
   String feedback;
   bool status; //completed the task or incomplete
-  String grade;   // Use this to store the ID of the doc 
+  String taskID;   // Use this to store the ID of the doc 
   String task;
 
   Task({
@@ -13,7 +13,7 @@ class Task {
     this.taskType,
     this.feedback,
     this.status,
-    this.grade,
+    this.taskID,
     this.task,
   });
 

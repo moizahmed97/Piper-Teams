@@ -86,7 +86,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                       Task(
                           task: _task ?? " ",
                           taskType: _getTaskTypeInt(_taskType),
-                          grade: "Incomplete",
+                          taskID: "Incomplete",
                           feedback: "",
                           status: false,
                           deadline: currentDateTime.add(Duration(hours: 24)),
