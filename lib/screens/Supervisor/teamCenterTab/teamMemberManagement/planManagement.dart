@@ -72,6 +72,7 @@ class _PlanManagementState extends State<PlanManagement> {
                               lineWidth: 15,
                               percent: documents[index].data["progress"],
                               animation: true,
+                              animationDuration: 1500,
                               backgroundColor: Colors.grey,
                               progressColor: Colors.tealAccent,
                               header: Column(
