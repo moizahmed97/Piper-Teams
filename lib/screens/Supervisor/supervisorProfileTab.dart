@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:piper_team_tasks/services/auth.dart';
-import 'package:piper_team_tasks/widgets/hyperlink.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SupervisorProfilePage extends StatelessWidget {
@@ -130,8 +129,7 @@ class SupervisorProfilePage extends StatelessWidget {
               }
             },
           ),
-          SizedBox(height: 10.0),
-          SizedBox(height: 30.0),
+          SizedBox(height: 40.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

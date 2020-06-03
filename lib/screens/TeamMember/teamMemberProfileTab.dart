@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:piper_team_tasks/services/auth.dart';
 import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TeamMemberProfilePage extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -122,9 +123,27 @@ class TeamMemberProfilePage extends StatelessWidget {
             ),
             color: Colors.orange,
             onPressed: () {
+              // TODO Add confirm dialog
               TeamMemberDatabaseService().teamMemberLeavesSection(
                   user.uid, memberDoc.data['supervisor']);
               Navigator.pop(context);
+            },
+          ),
+          SizedBox(height: 30.0),
+          CupertinoButton(
+            child: Text(
+              "Useful Tips",
+              style: Theme.of(context).textTheme.button,
+            ),
+            color: Colors.indigoAccent,
+            onPressed: () async {
+              String _url =
+                  'https://www.youtube.com/channel/UCp11OSn2mVVGyB6lgWilRFQ';
+              if (await canLaunch(_url)) {
+                await launch(_url);
+              } else {
+                throw 'Could not launch $_url';
+              }
             },
           ),
           SizedBox(height: 30.0),
