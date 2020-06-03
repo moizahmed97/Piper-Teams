@@ -94,7 +94,7 @@ class _IndividualMemberManagementState
                         })
                   ],
                   title: Text(
-                    'Manage Team Member',
+                    'Manage Member',
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   centerTitle: false,

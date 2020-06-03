@@ -28,9 +28,12 @@ class SupervisorProfilePage extends StatelessWidget {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    "Sign in as ${user.teamMember}  (Team Member)",
-                    style: Theme.of(context).textTheme.button,
+                  Flexible(
+                    child: Text(
+                      "Sign in as ${user.teamMember} \n (Team Member)",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.button,
+                    ),
                   ),
                 ]),
             color: Colors.green,

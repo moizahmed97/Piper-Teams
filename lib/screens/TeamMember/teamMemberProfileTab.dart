@@ -18,7 +18,7 @@ class TeamMemberProfilePage extends StatelessWidget {
       if (user.supervisor != "") {
         return FlatButton(
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -31,12 +31,12 @@ class TeamMemberProfilePage extends StatelessWidget {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    "Sign in as ${user.supervisor}  (Supervisor)",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .button,
+                  Flexible(
+                    child: Text(
+                      "Sign in as ${user.supervisor} \n (Supervisor)",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.button,
+                    ),
                   ),
                 ]),
             color: Colors.green,
@@ -47,7 +47,7 @@ class TeamMemberProfilePage extends StatelessWidget {
       } else {
         return FlatButton(
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -62,10 +62,7 @@ class TeamMemberProfilePage extends StatelessWidget {
                   ),
                   Text(
                     "Become a new Teacher",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .button,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ]),
             color: Colors.green,
@@ -89,7 +86,10 @@ class TeamMemberProfilePage extends StatelessWidget {
 
               await _auth.signOut();
             },
-            icon: Icon(Icons.exit_to_app, color: Colors.white,),
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.white,
+            ),
             label: Text("Logout", style: TextStyle(color: Colors.white)),
           )
         ],

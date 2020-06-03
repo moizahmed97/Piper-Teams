@@ -43,15 +43,6 @@ class _AddNewTaskState extends State<AddNewTask> {
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(
-              height: 30,
-            ),
-            TextFormField(
-              initialValue: "",
-              decoration: textInputDecoration.copyWith(hintText: "New Task"),
-              validator: (val) => val.isEmpty ? 'Please enter the task' : null,
-              onChanged: (val) => setState(() => _task = val),
-            ),
-            SizedBox(
               height: 20,
             ),
             DropdownButtonFormField(
@@ -61,6 +52,11 @@ class _AddNewTaskState extends State<AddNewTask> {
                   child: Text('$taskType'),
                 );
               }).toList(),
+              decoration: InputDecoration(
+                isDense: true,
+                labelText: 'Select Priority',
+                contentPadding: EdgeInsets.symmetric(vertical: 9),
+              ),
               value: _taskType ?? 'Normal',
               onChanged: (value) {
                 setState(() {
@@ -68,6 +64,15 @@ class _AddNewTaskState extends State<AddNewTask> {
                 });
               },
               isExpanded: true,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              initialValue: "",
+              decoration: textInputDecoration.copyWith(hintText: "New Task"),
+              validator: (val) => val.isEmpty ? 'Please enter the task' : null,
+              onChanged: (val) => setState(() => _task = val),
             ),
             SizedBox(
               height: 20,

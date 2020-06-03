@@ -104,7 +104,7 @@ class _PlanManagementState extends State<PlanManagement> {
                                             .toString() +
                                         "%",
                                     style:
-                                        Theme.of(context).textTheme.headline5,
+                                        Theme.of(context).textTheme.headline5.copyWith(fontSize: 90),
                                   ),
                                   Text(
                                     (documents[index].data["plan"]),

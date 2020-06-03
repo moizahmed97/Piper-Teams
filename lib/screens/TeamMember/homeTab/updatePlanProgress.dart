@@ -6,7 +6,8 @@ class UpdatePlanProgress extends StatefulWidget {
   _UpdatePlanProgressState createState() => _UpdatePlanProgressState();
   final String teamMemberID;
   final String planType;
-  UpdatePlanProgress({this.teamMemberID, this.planType});
+  final double planProgress;
+  UpdatePlanProgress({this.teamMemberID, this.planType, this.planProgress});
 }
 
 class _UpdatePlanProgressState extends State<UpdatePlanProgress> {
@@ -26,12 +27,10 @@ class _UpdatePlanProgressState extends State<UpdatePlanProgress> {
 
   // form values
   double _progress;
-  String _warning = "";
 
   @override
   Widget build(BuildContext context) {
     // Get the member ID from the widget tree using Provider
-
     return Form(
         key: _formKey,
         child: Column(
@@ -45,7 +44,7 @@ class _UpdatePlanProgressState extends State<UpdatePlanProgress> {
               height: 30,
             ),
             Slider(
-              value: _progress ?? 0,
+              value: _progress ?? widget.planProgress*100,
               onChanged: (val) {
                 setState(() {
                   _progress = val;
@@ -60,12 +59,6 @@ class _UpdatePlanProgressState extends State<UpdatePlanProgress> {
             SizedBox(
               height: 20,
             ),
-            Center(
-              child: Text(
-                _warning,
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
             RaisedButton(
                 color: Colors.teal[400],
                 child: Text(
@@ -73,15 +66,9 @@ class _UpdatePlanProgressState extends State<UpdatePlanProgress> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
-                  if (_progress > 0 && _progress < 100) {
-                    TeamMemberDatabaseService().updatePlanProgress(
-                        widget.teamMemberID, widget.planType, _progress);
-                    Navigator.of(context).pop();
-                  } else {
-                    setState(() {
-                      _warning = "Please enter a value between 0 and 100";
-                    });
-                  }
+                  TeamMemberDatabaseService().updatePlanProgress(
+                      widget.teamMemberID, widget.planType, _progress);
+                  Navigator.of(context).pop();
                 }),
           ],
         ));

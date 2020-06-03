@@ -15,12 +15,8 @@ class TeamCenterMemberCard extends StatelessWidget {
 
   TeamCenterMemberCard({this.teamMember});
 
-
   @override
   Widget build(BuildContext context) {
-
-  
-
     void _showAddTaskPanel() {
       showModalBottomSheet(
           context: context,
@@ -42,8 +38,9 @@ class TeamCenterMemberCard extends StatelessWidget {
     // All the latest tasks for this team member Stream defined in teamCenterTab.dart
     final latestTasks = Provider.of<List<Task>>(context);
     if (latestTasks != null) {
-      latestTasks
-          .removeWhere((element) => element.feedback == "Placeholder Feedback" || element.feedback == "completed");
+      latestTasks.removeWhere((element) =>
+          element.feedback == "Placeholder Feedback" ||
+          element.feedback == "completed");
       return Card(
         elevation: 8.0,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -100,49 +97,54 @@ class TeamCenterMemberCard extends StatelessWidget {
             icon: Icon(Icons.edit),
             tooltip: 'Edit task',
             onPressed: () {
-                showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-                child: Provider<String>.value(
-                    // Pass the value of teamMember ID down the tree (To Management) using Provider
-                    value: teamMember.teamMemberID,
-                    child: UpdateTask(taskID: doc.taskID,)),
-              ),
-            );
-          },
-          isScrollControlled: true);
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 30.0, horizontal: 30.0),
+                        child: Provider<String>.value(
+                            // Pass the value of teamMember ID down the tree (To Management) using Provider
+                            value: teamMember.teamMemberID,
+                            child: UpdateTask(
+                              taskID: doc.taskID,
+                            )),
+                      ),
+                    );
+                  },
+                  isScrollControlled: true);
             },
           ),
           onLongPress: () {
             showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-                child: Provider<String>.value(
-                    // Pass the value of teamMember ID down the tree (To Management) using Provider
-                    value: teamMember.teamMemberID,
-                    child: UpdateTask(taskID: doc.taskID,)),
-              ),
-            );
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 30.0, horizontal: 30.0),
+                      child: Provider<String>.value(
+                          // Pass the value of teamMember ID down the tree (To Management) using Provider
+                          value: teamMember.teamMemberID,
+                          child: UpdateTask(
+                            taskID: doc.taskID,
+                          )),
+                    ),
+                  );
+                },
+                isScrollControlled: true);
           },
-          isScrollControlled: true);
-          },
-          
           subtitle: _getTaskTypeText(doc.taskType, context),
           title: Text(
             "${doc.task}",
           ),
           leading: RawMaterialButton(
-            
             onPressed: () {
-              TeamMemberDatabaseService().setFeedbackToCompleted(teamMember.teamMemberID, doc.taskID);
+              TeamMemberDatabaseService()
+                  .setFeedbackToCompleted(teamMember.teamMemberID, doc.taskID);
             },
             child: AspectRatio(
               aspectRatio: 1.33,
@@ -204,8 +206,6 @@ class TeamCenterMemberCard extends StatelessWidget {
         ),
       );
   }
-
-  
 
   Text _getTaskTypeText(int taskType, context) {
     if (taskType == 1) {

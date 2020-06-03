@@ -42,8 +42,7 @@ class _UpdateTaskState extends State<UpdateTask> {
         stream: DatabaseService().getTask(memberID, widget.taskID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            Task task = snapshot
-                .data; 
+            Task task = snapshot.data;
             return Form(
                 key: _formKey,
                 child: Column(
@@ -54,7 +53,33 @@ class _UpdateTaskState extends State<UpdateTask> {
                       style: TextStyle(fontSize: 18.0),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 20,
+                    ),
+                    
+                    DropdownButtonFormField(
+                      items: taskTypes.map((taskType) {
+                        return DropdownMenuItem(
+                          value: taskType,
+                          child: Text('$taskType'),
+                        );
+                      }).toList(),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        labelText: 'Select Priority',
+                        contentPadding: EdgeInsets.symmetric(vertical: 9),
+                      ),
+                      value: _taskType ??
+                          _getTaskTypeString(task.taskType) ??
+                          'Normal',
+                      onChanged: (value) {
+                        setState(() {
+                          _taskType = value;
+                        });
+                      },
+                      isExpanded: true,
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     TextFormField(
                       initialValue: task.task,
@@ -67,63 +92,51 @@ class _UpdateTaskState extends State<UpdateTask> {
                     SizedBox(
                       height: 20,
                     ),
-                    DropdownButtonFormField(
-                      items: taskTypes.map((taskType) {
-                        return DropdownMenuItem(
-                          value: taskType,
-                          child: Text('$taskType'),
-                        );
-                      }).toList(),
-                      value: _taskType ??  _getTaskTypeString(task.taskType) ?? 'Normal',
-                      onChanged: (value) {
-                        setState(() {
-                          _taskType = value;
-                        });
-                      },
-                      isExpanded: true,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                     children: <Widget>[
-                      RaisedButton.icon(
-                        icon: Icon(Icons.update, color: Colors.white,),
-                        color: Colors.teal[400],
-                        label: Text(
-                          'Update',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () async {
-                          var currentDateTime = DateTime.now();
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        RaisedButton.icon(
+                            icon: Icon(
+                              Icons.update,
+                              color: Colors.white,
+                            ),
+                            color: Colors.teal[400],
+                            label: Text(
+                              'Update',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () async {
+                              var currentDateTime = DateTime.now();
 
-                          DatabaseService().updateExisitngTask(
-                              memberID,
-                              Task(
-                                  task: _task ?? task.task ?? " ",
-                                  taskType: _getTaskTypeInt(_taskType),
-                                  taskID: task.taskID,
-                                  feedback: task.feedback,
-                                  status: false,
-                                  deadline: currentDateTime,
-                                  dateCreated: currentDateTime));
-                          Navigator.of(context).pop();
-                        }),
-                        
+                              DatabaseService().updateExisitngTask(
+                                  memberID,
+                                  Task(
+                                      task: _task ?? task.task ?? " ",
+                                      taskType: _getTaskTypeInt(_taskType),
+                                      taskID: task.taskID,
+                                      feedback: task.feedback,
+                                      status: false,
+                                      deadline: currentDateTime,
+                                      dateCreated: currentDateTime));
+                              Navigator.of(context).pop();
+                            }),
                         FlatButton.icon(
-                          icon: Icon(Icons.delete_outline, color: Colors.white,),
-                        color: Colors.red,
-                        label: Text(
-                          'Delete',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () async {
-                          TeamMemberDatabaseService().deleteTask(memberID, task.taskID);
-                          Navigator.of(context).pop();
-                        }),
-                   ],)
-                        
+                            icon: Icon(
+                              Icons.delete_outline,
+                              color: Colors.white,
+                            ),
+                            color: Colors.red,
+                            label: Text(
+                              'Delete',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () async {
+                              TeamMemberDatabaseService()
+                                  .deleteTask(memberID, task.taskID);
+                              Navigator.of(context).pop();
+                            }),
+                      ],
+                    )
                   ],
                 ));
           } else {
