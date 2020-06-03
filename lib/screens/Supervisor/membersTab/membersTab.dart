@@ -62,9 +62,9 @@ class _AttendanceTabState extends State<AttendanceTab> {
       return Container(
         child: Center(
           child: Text(
-            "You do not have any Team Members yet",
-            style: TextStyle(fontSize: 20),
-          ),
+              "You do not have any Team Members yet \n \n Press the Plus Button to share your code",
+              style: TextStyle(fontSize: 18),
+            ),
         ),
       );
     }
