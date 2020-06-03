@@ -118,15 +118,57 @@ class TeamMemberProfilePage extends StatelessWidget {
           SizedBox(height: 30.0),
           CupertinoButton(
             child: Text(
-              "Leave Class",
+              "Exit Team",
               style: Theme.of(context).textTheme.button,
             ),
-            color: Colors.orange,
+            color: Colors.red,
             onPressed: () {
-              // TODO Add confirm dialog
-              TeamMemberDatabaseService().teamMemberLeavesSection(
-                  user.uid, memberDoc.data['supervisor']);
-              Navigator.pop(context);
+              // set up the buttons
+              Widget cancelButton = RaisedButton(
+                color: Colors.teal,
+                child: Text(
+                  "CANCEL",
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              );
+              Widget continueButton = FlatButton(
+                color: Colors.red,
+                child: Text("YES", style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  TeamMemberDatabaseService().teamMemberLeavesSection(
+                      user.uid, memberDoc.data['supervisor']);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              );
+
+              // set up the AlertDialog
+              AlertDialog alert = AlertDialog(
+                title: Text(
+                  "Exit Team",
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+                content:
+                    Text("Are you sure you would like to leave this Team?"),
+                actions: [
+                  cancelButton,
+                  continueButton,
+                ],
+              );
+
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return alert;
+                },
+              );
+
+              // TeamMemberDatabaseService().teamMemberLeavesSection(
+              //     user.uid, memberDoc.data['supervisor']);
+              // Navigator.pop(context);
             },
           ),
           SizedBox(height: 30.0),
