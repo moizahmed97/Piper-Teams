@@ -33,13 +33,15 @@ class _EditPlanState extends State<EditPlan> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: widget.edit ? Text(
-        "Create A New Plan",
-        style: TextStyle(color: Colors.black),
-      ) : Text(
-        "Edit Plan",
-        style: TextStyle(color: Colors.black),
-      ),
+      title: widget.edit
+          ? Text(
+              "Create A New Plan",
+              style: TextStyle(color: Colors.black),
+            )
+          : Text(
+              "Edit Plan",
+              style: TextStyle(color: Colors.black),
+            ),
       content: Form(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -116,21 +118,25 @@ class _EditPlanState extends State<EditPlan> {
               onChanged: (val) => setState(() => widget.planText = val),
             ),
             DropdownButtonFormField(
-                    items: planTypes.map((planType) {
-                      return DropdownMenuItem(
-                        value: planType,
-                        child: Text('$planType'),
-                      );
-                    }).toList(),
-                    value:
-                        widget.planType == null ? 'Critical' : widget.planType,
-                    onChanged: (value) {
-                      setState(() {
-                        widget.planType = value ?? "Critical";
-                      });
-                    },
-                    isExpanded: true,
-                  )
+              items: planTypes.map((planType) {
+                return DropdownMenuItem(
+                  value: planType,
+                  child: Text('$planType'),
+                );
+              }).toList(),
+              decoration: InputDecoration(
+                isDense: true,
+                labelText: 'Select Priority',
+                contentPadding: EdgeInsets.symmetric(vertical: 9),
+              ),
+              value: widget.planType == null ? 'Critical' : widget.planType,
+              onChanged: (value) {
+                setState(() {
+                  widget.planType = value ?? "Critical";
+                });
+              },
+              isExpanded: true,
+            )
           ],
         ),
       ),

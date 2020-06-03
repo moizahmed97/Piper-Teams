@@ -71,14 +71,16 @@ class _PlanManagementState extends State<PlanManagement> {
                               radius: MediaQuery.of(context).size.width - 50,
                               lineWidth: 15,
                               percent: documents[index].data["progress"],
-                              backgroundColor: Colors.grey[400],
-                              progressColor: Colors.teal[900],
+                              animation: true,
+                              backgroundColor: Colors.grey,
+                              progressColor: Colors.tealAccent,
                               header: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text(
-                                      "Priority: " + documents[index].data["planType"],
+                                      "Priority: " +
+                                          documents[index].data["planType"],
                                       style:
                                           Theme.of(context).textTheme.headline6,
                                     ),
@@ -103,14 +105,15 @@ class _PlanManagementState extends State<PlanManagement> {
                                             .toInt()
                                             .toString() +
                                         "%",
-                                    style:
-                                        Theme.of(context).textTheme.headline5.copyWith(fontSize: 90),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline5
+                                        .copyWith(fontSize: 90),
                                   ),
                                   Text(
                                     (documents[index].data["plan"]),
                                     textAlign: TextAlign.center,
                                     style:
-                                  
                                         Theme.of(context).textTheme.headline6,
                                   ),
                                   SizedBox(height: 10),
