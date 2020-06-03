@@ -33,8 +33,8 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                       child: RawMaterialButton(
                     splashColor: Colors.teal,
                     child: Center(
-                        child: Text("Press Here \nto Join A Team",
-                            textAlign: TextAlign.center)),
+                        child: Text("Press Here \n to Join a Team",
+                            textAlign: TextAlign.center, style: TextStyle(fontSize: 20),)),
                     onPressed: () {
                       showDialog(
                           context: context,
