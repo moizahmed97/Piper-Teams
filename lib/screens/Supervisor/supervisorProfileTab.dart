@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:piper_team_tasks/models/simpleuser.dart';
 import 'package:piper_team_tasks/services/auth.dart';
+import 'package:piper_team_tasks/widgets/hyperlink.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SupervisorProfilePage extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -118,7 +120,15 @@ class SupervisorProfilePage extends StatelessWidget {
               style: Theme.of(context).textTheme.button,
             ),
             color: Colors.indigoAccent,
-            onPressed: () => {},
+            onPressed: () async {
+              String _url =
+                  'https://www.youtube.com/channel/UCp11OSn2mVVGyB6lgWilRFQ';
+              if (await canLaunch(_url)) {
+                await launch(_url);
+              } else {
+                throw 'Could not launch $_url';
+              }
+            },
           ),
           SizedBox(height: 10.0),
           SizedBox(height: 30.0),

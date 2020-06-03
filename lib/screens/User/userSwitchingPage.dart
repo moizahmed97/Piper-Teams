@@ -7,6 +7,8 @@ import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/services/teamMemberDatabase.dart';
 import 'package:piper_team_tasks/widgets/decoratorForForm.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
+import 'package:piper_team_tasks/widgets/hyperlink.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserSwitchingPage extends StatefulWidget {
   @override
@@ -314,12 +316,21 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
                       applicationVersion: '1.0',
                     );
                   },
-                  icon: Icon(Icons.info_outline),
-                  label: Text('Licenses')),
+                  icon: Icon(Icons.info),
+                  label: Text('Licenses ')),
               FlatButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    String _url =
+                        'https://www.youtube.com/channel/UCp11OSn2mVVGyB6lgWilRFQ';
+                    if (await canLaunch(_url)) {
+                      await launch(_url);
+                    } else {
+                      throw 'Could not launch $_url';
+                    }
+                  },
                   icon: Icon(Icons.info_outline),
-                  label: Text('Tips')),
+                  label: Text('Tips')
+                  ,),
               FlatButton.icon(
                   onPressed: () {
                     showDialog(
@@ -328,33 +339,41 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
                           return AlertDialog(
                             title: Text(
                               "Developed using Flutter by",
-                              style: TextStyle(color: Colors.black),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.teal),
                             ),
                             content: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   SizedBox(
                                     height: 7,
                                   ),
-                                  RaisedButton.icon(
-                                      color: Colors.cyan,
-                                      onPressed: () {},
-                                      icon: Icon(Icons.person_outline),
-                                      label: Text('Moiz Ahmed')),
+                                  Hyperlink('https://github.com/moizahmed97',
+                                      'Moiz Ahmed (Github)'),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "Email : moizahmed97@gmail.com",
+                                    style:
+                                        Theme.of(context).textTheme.subtitle2,
+                                  ),
                                   SizedBox(
-                                    height: 7,
+                                    height: 10,
                                   ),
                                   Text("AND"),
                                   SizedBox(
+                                    height: 10,
+                                  ),
+                                  Hyperlink('https://github.com/fsmonarchy',
+                                      'Faisal Abdus Sattar (Github)'),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "Email : faisalsattar09@gmail.com",
+                                    style:
+                                        Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                  SizedBox(
                                     height: 7,
                                   ),
-                                  RaisedButton.icon(
-                                      color: Colors.cyan,
-                                      onPressed: () {},
-                                      icon: Icon(Icons.person_outline),
-                                      label: Text('Faisal Abdus Sattar')),
                                 ]),
                             actions: <Widget>[
                               FlatButton(
@@ -366,7 +385,7 @@ class _UserSwitchingPageState extends State<UserSwitchingPage>
                           );
                         });
                   },
-                  icon: Icon(Icons.info_outline),
+                  icon: Icon(Icons.code),
                   label: Text('About'))
             ],
           ),
