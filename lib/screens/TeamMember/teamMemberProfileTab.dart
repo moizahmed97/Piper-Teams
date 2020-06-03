@@ -165,10 +165,6 @@ class TeamMemberProfilePage extends StatelessWidget {
                   return alert;
                 },
               );
-
-              // TeamMemberDatabaseService().teamMemberLeavesSection(
-              //     user.uid, memberDoc.data['supervisor']);
-              // Navigator.pop(context);
             },
           ),
           SizedBox(height: 30.0),
