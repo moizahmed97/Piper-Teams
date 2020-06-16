@@ -33,8 +33,11 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                       child: RawMaterialButton(
                     splashColor: Colors.teal,
                     child: Center(
-                        child: Text("Press Here \n to Join a Team",
-                            textAlign: TextAlign.center, style: TextStyle(fontSize: 20),)),
+                        child: Text(
+                      "Press Here \n to Join a Team",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
+                    )),
                     onPressed: () {
                       showDialog(
                           context: context,
@@ -145,10 +148,8 @@ class _TeamMemberHomeTabState extends State<TeamMemberHomeTab> {
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           List<Task> latestTasks = snapshot.data;
-                          // remove the placeholder latest task
-                          latestTasks.removeWhere((element) =>
-                              element.feedback == "Placeholder Feedback" ||
-                              element.feedback == 'completed');
+                          latestTasks.removeWhere(
+                              (element) => element.feedback == 'completed');
                           return Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 15.0, horizontal: 5.0),

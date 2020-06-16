@@ -24,8 +24,7 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
             return Loading();
           } else {
             final List<DocumentSnapshot> documents = snapshot.data.documents;
-            documents.removeWhere(
-                (element) => element.data['plan'] == "Placeholder plan");
+
             if (documents.length != 0) {
               return Card(
                 child: Column(
@@ -64,7 +63,10 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
                         padding: EdgeInsets.symmetric(
                             vertical: 30.0, horizontal: 30.0),
                         child: UpdatePlanProgress(
-                            teamMemberID: user.uid, planType: doc['planType'], planProgress: doc['progress'],)),
+                          teamMemberID: user.uid,
+                          planType: doc['planType'],
+                          planProgress: doc['progress'],
+                        )),
                   );
                 },
                 isScrollControlled: true);
@@ -97,7 +99,10 @@ class _PlanSummaryWidgetState extends State<PlanSummaryWidget> {
                       padding: EdgeInsets.symmetric(
                           vertical: 30.0, horizontal: 30.0),
                       child: UpdatePlanProgress(
-                          teamMemberID: user.uid, planType: doc['planType'], planProgress: doc['progress'],)),
+                        teamMemberID: user.uid,
+                        planType: doc['planType'],
+                        planProgress: doc['progress'],
+                      )),
                 );
               },
               isScrollControlled: true);

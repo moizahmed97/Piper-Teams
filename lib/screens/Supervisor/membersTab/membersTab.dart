@@ -13,8 +13,7 @@ class _AttendanceTabState extends State<AttendanceTab> {
   Widget build(BuildContext context) {
     // Get the Team Member Document that has Name and ID in each document
     final teamMembers = Provider.of<List<SimpleTeamMemberInfo>>(context);
-    teamMembers.removeWhere(
-        (element) => element.teamMemberID == "Placeholder teamMemberID");
+
     if (teamMembers.length != 0) {
       return Container(
         child: Column(

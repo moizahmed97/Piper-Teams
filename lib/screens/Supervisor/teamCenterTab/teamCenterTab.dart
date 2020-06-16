@@ -6,7 +6,6 @@ import 'package:piper_team_tasks/services/database.dart';
 import 'package:piper_team_tasks/widgets/loading.dart';
 import 'package:piper_team_tasks/models/task.dart';
 
-
 class TeamCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,8 +13,6 @@ class TeamCenter extends StatelessWidget {
     final teamMembers = Provider.of<List<SimpleTeamMemberInfo>>(context);
 
     if (teamMembers != null) {
-      teamMembers.removeWhere(
-          (element) => element.teamMemberID == "Placeholder teamMemberID");
       if (teamMembers.length != 0) {
         return Container(
           height: MediaQuery.of(context).size.height,
@@ -28,7 +25,8 @@ class TeamCenter extends StatelessWidget {
                 return StreamProvider<List<Task>>.value(
                     value: DatabaseService()
                         .getAllTasks(teamMembers[index].teamMemberID),
-                    child: TeamCenterMemberCard(teamMember: teamMembers[index]));
+                    child:
+                        TeamCenterMemberCard(teamMember: teamMembers[index]));
               }),
         );
       } else {

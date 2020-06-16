@@ -11,8 +11,6 @@ class TasksHistory extends StatelessWidget {
     final tasks = Provider.of<List<Task>>(context);
 
     if (tasks != null) {
-      tasks
-          .removeWhere((element) => element.feedback == "Placeholder Feedback");
       // Remove all the tasks that have been completed
       tasks.removeWhere((element) => element.status == false);
       if (tasks.length != 0) {

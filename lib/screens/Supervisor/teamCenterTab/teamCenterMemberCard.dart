@@ -38,9 +38,7 @@ class TeamCenterMemberCard extends StatelessWidget {
     // All the latest tasks for this team member Stream defined in teamCenterTab.dart
     final latestTasks = Provider.of<List<Task>>(context);
     if (latestTasks != null) {
-      latestTasks.removeWhere((element) =>
-          element.feedback == "Placeholder Feedback" ||
-          element.feedback == "completed");
+      latestTasks.removeWhere((element) => element.feedback == "completed");
       return Card(
         elevation: 8.0,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),

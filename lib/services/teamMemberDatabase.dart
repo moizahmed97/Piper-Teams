@@ -20,34 +20,8 @@ class TeamMemberDatabaseService {
         .document(uid)
         .setData({'name': '$name', 'age': '$age', 'supervisor': ""});
 
-    // create the tasks collection with dummy data
-    await teamMemberCollection
-        .document(uid)
-        .collection('Tasks')
-        .document('placeholder')
-        .setData({
-      'taskType': 1,
-      'dateCreated': DateTime(2017, 9, 7, 17, 30),
-      'deadline': DateTime(2017, 9, 7, 17, 30),
-      'feedback': "Placeholder Feedback",
-      'taskID': " ",
-      'status': false,
-      'task': "Placeholder Task",
-    });
-    // Create plans collection with dummy data
-    await teamMemberCollection
-        .document(uid)
-        .collection('Plan')
-        .document('placeholder')
-        .setData({
-      'planType': "placeholder",
-      'dateCreated': DateTime(2017, 9, 7, 17, 30),
-      'dateEnding': DateTime(2017, 9, 7, 17, 30),
-      'dateStarting': DateTime(2017, 9, 7, 17, 30),
-      'plan': "Placeholder plan",
-      'progress': 0.5,
-      'status': true,
-    });
+    
+  
   }
 
   // Adds the name of the newly created Team member to the User Document
@@ -146,7 +120,7 @@ class TeamMemberDatabaseService {
         .getDocuments()
         .then((onValue) {
       for (var doc in onValue.documents) {
-        if (doc.data['plan'] != "Placeholder plan") doc.reference.delete();
+        doc.reference.delete();
       }
     });
     // Go to TeamMember/teamMember/Tasks and delete all documents
@@ -155,7 +129,6 @@ class TeamMemberDatabaseService {
         .getDocuments()
         .then((onValue) {
       for (var doc in onValue.documents) {
-        if (doc.data['feedback'] != "Placeholder Feedback")
           doc.reference.delete();
       }
     });

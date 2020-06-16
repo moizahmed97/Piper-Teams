@@ -32,9 +32,6 @@ class _PlanManagementState extends State<PlanManagement> {
         Provider.of<List<DocumentSnapshot>>(context);
     final teamMember = Provider.of<String>(context);
 
-    documents
-        .removeWhere((element) => element.data['plan'] == "Placeholder plan");
-
     if (documents.length != 0) {
       return Container(
         margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),

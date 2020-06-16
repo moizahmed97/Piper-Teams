@@ -115,9 +115,6 @@ class DatabaseService {
     return tasksCollection.document(taskID).snapshots().map(_taskFromSnapshot);
   }
 
-  
-
-
   Future<void> createNewTask(String teamMemberID, Task newTask) async {
     CollectionReference tasksCollection =
         Firestore.instance.collection('TeamMember/$teamMemberID/Tasks');
@@ -176,19 +173,9 @@ class DatabaseService {
   }
 
   Future<void> createSupervisor(uid, name, age) async {
-    await supervisorCollection
+    return await supervisorCollection
         .document(uid)
         .setData({'name': '$name', 'age': '$age'});
-
-    // create the team collection with dummy data
-    await supervisorCollection
-        .document(uid)
-        .collection('Team')
-        .document()
-        .setData({
-      'Name': "Test Member",
-      'teamMemberID': "Placeholder teamMemberID",
-    });
   }
 
   // Adds the name of the newly created Supervisor to the User Document

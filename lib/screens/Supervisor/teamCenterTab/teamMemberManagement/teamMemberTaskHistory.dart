@@ -20,15 +20,14 @@ class _TeamMemberHistoryState extends State<TeamMemberHistory> {
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
             List<Task> tasks = snapshot.data;
-            tasks.removeWhere(
-                (element) => element.feedback == "Placeholder Feedback");
+
             // Remove all the tasks that have been completed
-      tasks.removeWhere((element) => element.status == false);
+            tasks.removeWhere((element) => element.status == false);
             return Container(
               child: ListView.builder(
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
-                      return TaskCard(task: tasks[index]);
+                    return TaskCard(task: tasks[index]);
                   }),
             );
           } else {
