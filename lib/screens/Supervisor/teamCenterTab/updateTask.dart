@@ -112,7 +112,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                                   memberID,
                                   Task(
                                       task: _task ?? task.task ?? " ",
-                                      taskType: _getTaskTypeInt(_taskType),
+                                      taskType: _getTaskTypeInt(_taskType ?? task.taskType) ,
                                       taskID: task.taskID,
                                       feedback: task.feedback,
                                       status: false,

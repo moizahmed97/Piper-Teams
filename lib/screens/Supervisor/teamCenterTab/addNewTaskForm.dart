@@ -39,7 +39,7 @@ class _AddNewTaskState extends State<AddNewTask> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              'Add Next Task',
+              'Add New Task',
               style: TextStyle(fontSize: 18.0),
             ),
             SizedBox(
@@ -89,7 +89,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                       memberID,
                       Task(
                           task: _task ?? " ",
-                          taskType: _getTaskTypeInt(_taskType),
+                          taskType: _getTaskTypeInt(_taskType ?? 'Normal'),
                           taskID: "Incomplete",
                           feedback: "",
                           status: false,
