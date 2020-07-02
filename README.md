@@ -1,16 +1,44 @@
-# piper_team_tasks
+# Piper Teams
+Cross Platform Mobile App for Android and iOS that helps teams work together effectively
 
-A new Flutter project.
+### Download
 
-## Getting Started
+Download and test the Android app on your device [Link](https://drive.google.com/file/d/1lIc5MPWRpBo_sF0FWeimwf1ItUUEMtTi/view?usp=sharing).
 
-This project is a starting point for a Flutter application.
+### Demo Video 
+To View the Demo and learn how to use the App [Watch Video](https://www.youtube.com/watch?v=3DRATu-SnRI).
+Visit our app channel for further details
 
-A few resources to get you started if this is your first Flutter project:
+### Application Architecture 
+```
+                      |------- Firebase Authentication (For Sign In and Sign Up of users)
+                      
+Flutter -> Firebase---|------- Cloud Firestore (NoSQL cloud database for storing Data)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+                      |------- Firebase Cloud Functions   
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Features 
+
+#### Authentication 
+The App uses Firebase authentication to authenticate users and allow different roles. 
+
+#### Data Storage 
+To Store user and team Data the app uses Cloud Firestore, a NoSQL Database that is flexible, syncs in real time with offline support
+
+#### Accessibility
+The app is built with a Cloud first approach, therefore users can access teams and team data from anywhere, any device at anytime. Simply download the app and Login.
+
+#### Types of Users
+1. Team Manager
+   - Can Create Teams
+   - Invite Team Members to Join the Team
+   - Assign Tasks by priority and Plans to individual Team members
+   - Grade or Delete Tasks for team members
+2. Team Member
+   - Join a team with the unique code
+   - Leave a team
+   - Mark tasks assigned as complete 
+   - Update progress on plans assigned by the manager    
+
+
