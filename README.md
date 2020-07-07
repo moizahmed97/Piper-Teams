@@ -6,7 +6,7 @@ Cross Platform Mobile App for Android and iOS that helps teams work together eff
 Download and test the Android app on your device [Link](https://drive.google.com/file/d/1lIc5MPWRpBo_sF0FWeimwf1ItUUEMtTi/view?usp=sharing).
 
 ### Demo Video 
-To View the Demo and learn how to use the App [Watch Video](https://www.youtube.com/watch?v=3DRATu-SnRI).
+To View the Demo and learn how to use the App [(Watch Video)](https://www.youtube.com/watch?v=3DRATu-SnRI).
 Visit our app channel for further details
 
 ### Application Architecture 
