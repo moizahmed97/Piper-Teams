@@ -39,6 +39,11 @@ The app is built with a Cloud first approach, therefore users can access teams a
    - Join a team with the unique code
    - Leave a team
    - Mark tasks assigned as complete 
-   - Update progress on plans assigned by the manager    
+   - Update progress on plans assigned by the manager
+
+### Developers 
+Developed by 
+- Moiz Ahmed [(GitHub)](https://github.com/moizahmed97)
+- Faisal Abdus Sattar [(GitHub)](https://github.com/fsmonarchy)
 
 
