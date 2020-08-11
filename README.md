@@ -48,6 +48,6 @@ Developed by
 
 ### Screenshots
 
-![alt text](https://drive.google.com/file/d/1Vr6hbvwucrcxi3euNC-5FNDsL_y6D-_A/view?usp=sharing)
+![alt text](https://drive.google.com/file/d/1Vr6hbvwucrcxi3euNC-5FNDsL_y6D-_A/view)
 
 
